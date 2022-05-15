@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@100&family=Macondo&family=Source+Code+Pro:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+	@apply border p-3 rounded-md text-sm transition duration-500;
+}
+
+.card {
+	@apply border rounded-md p-3 transition duration-500 bg-gray-900 flex flex-col items-center justify-center w-64 gap-y-5 hover:bg-zinc-900;
+}
+
+.pcard {
+	@apply text-xs text-gray-300;
+}
+
+.icon {
+	@apply items-center text-2xl transition duration-700;
+}
+
+.text {
+	@apply absolute top-3 cursor-default tracking-wider transition duration-700;
+}
+
+.contact-icon {
+	@apply p-5 bg-yellow-300 rounded-full hover:bg-transparent transition-colors duration-500;
+}
