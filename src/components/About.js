@@ -42,13 +42,7 @@ const About = () => {
                               )}
                         </div>
                   </div>
-                  {/* About my tech stack */}
-                  <div>
-                        <p className="text-5xl text-center font-bold font-Maconda uppercase tracking-wider">
-                              Tech Stack
-                        </p>
-                        <TechStack />
-                  </div>
+
             </div>
       );
 };

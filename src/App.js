@@ -4,6 +4,7 @@ import Projects from './components/Projects'
 import Others from './components/Contacts'
 import Footer from './components/Footer'
 import About from "./components/About"
+import TechStack from "./components/TechStack"
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Hero />
         <Header />
         <About />
+        <TechStack />
         <Projects />
         <Others />
         <Footer />
