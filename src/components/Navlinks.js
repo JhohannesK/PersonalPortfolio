@@ -63,7 +63,7 @@ const Header = () => {
 
       return (
             <div className=''>
-                  <nav className='fixed bottom-[2rem] left-[50%]  [transform:translateX(-50%)] flex items-center  text-yellow-300 w-[360px] h-20 bg-zinc-700 z-10 rounded-full px-5 '>
+                  <nav className='fixed bottom-[2rem] left-[50%]  [transform:translateX(-50%)] flex items-center  text-yellow-300 w-[360px] h-20 bg-zinc-700  bg-opacity-30 z-10 rounded-full px-5 '>
 
                         <div className=" flex item-center justify-center  uppercase font-bold text-sm pl-12 font-mono w-full">
 

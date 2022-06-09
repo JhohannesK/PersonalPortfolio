@@ -1,21 +1,26 @@
-import React, { useState } from 'react'
-
+import React, { useState } from 'react';
 
 const Card = (props) => {
-      const [hovered, setHovered] = useState(false)
+      const [hovered, setHovered] = useState(false);
       const toggleHover = () => {
-            setHovered(!hovered)
-      }
+            setHovered(!hovered);
+      };
 
       return (
-            <div className='card' onMouseEnter={toggleHover} onMouseLeave={toggleHover} >
-                  <p className='font-Nunito tracking-wider hover:text-yellow-400'>{props.items.title}</p>
+            <div
+                  className="card"
+                  onMouseEnter={toggleHover}
+                  onMouseLeave={toggleHover}
+            >
+                  <p className="font-Nunito tracking-wider hover:text-yellow-400">
+                        {props.items.title}
+                  </p>
                   <div className={hovered ? 'animate-ping' : ' '}>
                         {props.items.icon}
                   </div>
                   <p className="pcard">{props.items.abb}</p>
             </div>
-      )
-}
+      );
+};
 
-export default Card
+export default Card;

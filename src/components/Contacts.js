@@ -1,9 +1,9 @@
 import React from 'react'
 import { GrLocation, GrMailOption, GrPhone } from 'react-icons/gr'
 
-const Others = () => {
+const Contact = () => {
       return (
-            <div id='contact' className='bg-white text-gray-800'>
+            <div id='contact' className='bg-gray-400 text-gray-800'>
                   <p className='text-5xl font-bold text-center pt-5 font-Maconda uppercase tracking-wider'>Contact</p>
 
                   <div className='px-10 sm:px-20 pt-5 pb-16 flex flex-col gap-y-5'>
@@ -15,7 +15,7 @@ const Others = () => {
                               </div>
                               <div>
                                     <p className='text-3xl'>Location: </p>
-                                    <p className='font-Exo text-gray-400'>Alajo, Paradise Street, Accra</p>
+                                    <p className='font-Exo text-white'>Alajo, Paradise Street, Accra</p>
                               </div>
                         </div>
 
@@ -26,7 +26,7 @@ const Others = () => {
                               </div>
                               <div>
                                     <p className='text-3xl'>Email:  </p>
-                                    <p className='font-Exo text-gray-400'>jdomeh77@gmail.com</p>
+                                    <p className='font-Exo text-white'>jdomeh77@gmail.com</p>
                               </div>
                         </div>
 
@@ -37,7 +37,7 @@ const Others = () => {
                               </div>
                               <div>
                                     <p className='text-3xl'>Phone:  </p>
-                                    <p className='font-Exo text-gray-400'>+233 559 603 060</p>
+                                    <p className='font-Exo text-white'>+233 559 603 060</p>
                               </div>
                         </div>
                   </div>
@@ -45,4 +45,4 @@ const Others = () => {
       )
 }
 
-export default Others 
+export default Contact 
