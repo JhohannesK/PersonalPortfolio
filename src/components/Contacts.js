@@ -9,6 +9,8 @@ const Contact = () => {
 				Contact
 			</p>
 
+			{/* REVIEW: Making design responsive. */}
+
 			<main>
 				{/* Start of container for location, email and phone */}
 				<div className="px-10 sm:px-20 pt-5 pb-16 flex flex-col gap-y-5">
@@ -51,6 +53,7 @@ const Contact = () => {
 
 				{/* Start for social media container */}
 				<div className="text-3xl flex items-center justify-center gap-x-12">
+					{/* FIXME: Make icons animate one after the other. */}
 					<BsFacebook className="socials " />
 					<BsTwitter className="socials " />
 					<BsLinkedin className="socials " />

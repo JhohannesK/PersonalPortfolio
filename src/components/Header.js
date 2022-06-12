@@ -1,5 +1,7 @@
 import React from 'react';
 
+// FIXME: Try to design it to make it look like <Domeh.sh />
+
 const Header = () => {
 	return (
 		<div className="flex items-center justify-center text-2xl p-5">

@@ -1,5 +1,7 @@
 import React from 'react';
 
+// TODO: Try and add some few things to the footer.
+
 const Footer = () => {
 	return (
 		<footer
