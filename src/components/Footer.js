@@ -1,19 +1,20 @@
-import React from 'react'
-import { BsFacebook, BsTwitter, BsLinkedin } from 'react-icons/bs'
-
+import React from 'react';
 
 const Footer = () => {
-      return (
-            <footer id='footer' className='flex flex-col items-center justify-center gap-y-2'>
+	return (
+		<footer
+			id="footer"
+			className="flex flex-col items-center justify-center gap-y-2"
+		>
+			<div className="flex flex-col  gap-4 py-6 items-center justify-around w-full md:px-28 md:flex-row md:border-t md:bg-gray-900">
+				<div>
+					<span className="text-yellow-300 text-xs">
+						Domeh John Kelvin
+					</span>
+				</div>
+			</div>
+		</footer>
+	);
+};
 
-                  <div className='flex flex-col  gap-4 py-6 items-center justify-around w-full md:px-28 md:flex-row md:border-t md:bg-gray-900'>
-
-                        <div>
-                              <span className='text-yellow-300 text-xs'>Domeh John Kelvin</span>
-                        </div>
-                  </div>
-            </footer>
-      )
-}
-
-export default Footer
+export default Footer;
