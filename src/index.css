@@ -28,6 +28,14 @@
 	@apply p-5 bg-yellow-300 rounded-full hover:bg-transparent transition-colors duration-500;
 }
 
-.socials {
-	@apply animate-float;
+.social1 {
+	@apply animate-float1;
+}
+
+.social2 {
+	@apply animate-float2;
+}
+
+.social3 {
+	@apply animate-float3;
 }

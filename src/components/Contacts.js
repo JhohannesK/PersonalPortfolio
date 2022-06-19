@@ -53,10 +53,9 @@ const Contact = () => {
 
 				{/* Start for social media container */}
 				<div className="text-3xl flex items-center justify-center gap-x-12">
-					{/* FIXME: Make icons animate one after the other. */}
-					<BsFacebook className="socials " />
-					<BsTwitter className="socials " />
-					<BsLinkedin className="socials " />
+					<BsFacebook className="social1 " />
+					<BsTwitter className="social2 " />
+					<BsLinkedin className="social3 " />
 				</div>
 				{/* End */}
 			</main>

@@ -28,9 +28,8 @@ const Hero = () => {
 					Creative Frontend Developer
 				</p>
 				<div className="flex items-center justify-center gap-x-4 pt-5">
-					{/* TODO: 
-					Add download link
-					*/}
+					{/* TODO: Add download link
+					 */}
 					<a href="resume.pdf" download>
 						<button className="btn hover:bg-yellow-300 hover:text-black animate-float ">
 							{' '}
