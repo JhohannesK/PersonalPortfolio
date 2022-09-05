@@ -10,15 +10,19 @@ import Header from './components/Header';
 function App() {
 	return (
 		<div className="bg-[url('./images/blur-stain.jpg')] text-white bg-contain">
-			<div className="bg-zinc-900 opacity-90 ">
-				<Header />
-				<Hero />
-				<Navigation />
-				<About />
-				<TechStack />
-				<Projects />
-				<Others />
-				<Footer />
+			<div className='bg-zinc-900 opacity-90 '>
+				<main className='w-full flex items-center justify-center'>
+					<div className='max-w-screen-2xl'>
+						<Header />
+						<Hero />
+						<Navigation />
+						<About />
+						<TechStack />
+						<Projects />
+						<Others />
+						<Footer />
+					</div>
+				</main>
 			</div>
 		</div>
 	);
