@@ -1,16 +1,15 @@
 import React from 'react';
 import ImageOne from '../images/Mask Group 1.png';
-import peep from '../images/Open Peeps Flat Assets/Flat Assets/Templates/Bust/peep-8.svg';
+import peep from '../assets/images/Open Peeps Flat Assets/Flat Assets/Templates/Bust/peep-8.svg';
 import { Link, ScrollLink } from 'react-scroll';
 
 const Hero = () => {
 	return (
 		<div
 			id='hero'
-			className='flex flex-col items-center pt-24 px-10 md:flex-row md:items-center md:justify-between md:px-[10rem] md:pt-28 md:gap-x-7'
+			className='flex flex-col items-center pt-24 px-10 md:flex-row md:items-center md:justify-center md:px-[10rem] md:pt-28 md:gap-x-40'
 		>
 			{/* Contains the image */}
-			{/* BUG: Max width does not work on image */}
 			<div className='rounded-xl max-w-[30rem] md:w-96 bg-gradient-to-r from-yellow-300 to-gray-700 border border-red-300'>
 				{/* on top of the of the container */}
 				<div className='rounded-xl w-full md:w-[100%] rotate-[10deg] hover:rotate-0 transition duration-500 bg-yellow-300'>
@@ -33,7 +32,7 @@ const Hero = () => {
 				<div className='flex items-center justify-center gap-x-4 pt-5'>
 					{/* TODO: Add download link
 					 */}
-					<a href='resume.pdf' download>
+					<a href='#' download>
 						<button className='btn hover:bg-yellow-300 hover:text-black animate-float '>
 							{' '}
 							Download CV
