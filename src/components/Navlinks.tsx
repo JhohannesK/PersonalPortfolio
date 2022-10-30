@@ -7,24 +7,29 @@ import { MdOutlineContactSupport } from 'react-icons/md';
 
 const nav = [
 	{
+		id: 0,
 		offset: 0,
 		icon: <BiHomeAlt />,
 		name: 'Home',
 		to: 'hero',
 	},
 	{
+		id: 1,
 		offset: 100,
 		icon: <VscPerson />,
 		name: 'About',
 		to: 'about',
 	},
 	{
+		id: 2,
 		offset: 50,
 		icon: <AiOutlineProject />,
 		name: 'Project',
 		to: 'projects',
 	},
+
 	{
+		id: 3,
 		offset: 50,
 		icon: <MdOutlineContactSupport />,
 		name: 'Contact',
@@ -32,14 +37,17 @@ const nav = [
 	},
 ];
 
+interface objProps {
+	id: number;
+	offset: number;
+	icon: JSX.Element;
+	name: string;
+	to: string;
+}
+
 interface IconProps {
 	activeObject: number | null;
-	objects: {
-		offset: number;
-		icon: JSX.Element;
-		name: string;
-		to: string;
-	}[];
+	objects: objProps[];
 }
 
 const Navigation = () => {
@@ -53,7 +61,7 @@ const Navigation = () => {
 	}
 
 	function toggleActiveIcon(index: number) {
-		if (iconState === iconState.activeObject) {
+		if (iconState.objects[index].id === iconState.activeObject) {
 			return 'icon -translate-y-10 opacity-0';
 		} else {
 			return 'icon';
@@ -61,7 +69,7 @@ const Navigation = () => {
 	}
 
 	function toggleActiveName(index: number) {
-		if (iconState.objects[index] === iconState.activeObject) {
+		if (iconState.objects[index].id === iconState.activeObject) {
 			return 'text translate-y-5';
 		} else {
 			return 'text opacity-0';
