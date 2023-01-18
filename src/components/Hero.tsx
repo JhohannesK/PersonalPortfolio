@@ -1,7 +1,7 @@
 import React from 'react';
 import ImageOne from '../images/Mask Group 1.png';
 import peep from '../assets/images/Open Peeps Flat Assets/Flat Assets/Templates/Bust/peep-8.svg';
-import { Link, ScrollLink } from 'react-scroll';
+import { Link } from 'react-scroll';
 
 const Hero = () => {
 	return (
@@ -27,7 +27,7 @@ const Hero = () => {
 					Domeh John Kelvin
 				</p>
 				<p className='text-xs sm:text-sm md:text-lg text-gray-400'>
-					Creative Frontend Developer
+					Creative Frontend Engineer
 				</p>
 				<div className='flex items-center justify-center gap-x-4 pt-5'>
 					{/* TODO: Add download link
