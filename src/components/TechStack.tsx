@@ -23,6 +23,8 @@ const TechStack = () => {
 							<li>'HTML5'</li>
 							<li>'CSS3'</li>
 							<li>'Java'</li>
+							<li>'Golang'</li>
+							{/* <li>''</li> */}
 							<li className='text-white'>];</li>
 						</ul>
 					</pre>
