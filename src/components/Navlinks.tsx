@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { BiHomeAlt } from 'react-icons/bi';
 import { VscPerson } from 'react-icons/vsc';
 import { Link } from 'react-scroll';
@@ -6,73 +6,15 @@ import { AiOutlineProject } from 'react-icons/ai';
 import { MdOutlineContactSupport } from 'react-icons/md';
 import { IconProps } from './@types';
 import { nav } from '../data/content/navlinks';
+import { appContext } from '../util/Context';
+import useToggleClassName from '../../hook/useToggle';
 
 const Navigation = () => {
-	const [iconState, setIconState] = useState<IconProps>({
-		activeObject: null,
-		objects: nav,
-	});
-
-	const refs = useRef<(HTMLDivElement | null)[]>([]);
-	console.log('🚀 ~ file: Navlinks.tsx:60 ~ Navigation ~ ref:', refs);
-
-	const [test, setTest] = useState<boolean>(false);
-	console.log('🚀 ~ file: Navlinks.tsx:20 ~ Navigation ~ test:', test);
-
-	useEffect(() => {
-		const observer = new IntersectionObserver(
-			() => {
-				(entries: IntersectionObserverEntry[]) => {
-					entries.forEach((entry, index) => {
-						const divId = Number(entry.target.getAttribute('data-id'));
-						if (entry.isIntersecting) {
-							setTest(entry.isIntersecting);
-						}
-						// if (entry.isIntersecting) {
-						// 	setIconState({ ...iconState, activeObject: index });
-						// 	toggleActiveIcon(index);
-						// 	toggleActiveName(index);
-						// 	setTest(index);
-						// }
-					});
-				};
-			},
-			{
-				root: null,
-				rootMargin: '-300px',
-				threshold: 0.5,
-			}
-		);
-
-		refs.current.forEach((ref) => {
-			if (ref) {
-				observer.observe(ref);
-			}
-		});
-
-		return () => {
-			observer.disconnect();
-		};
-	}, [refs]);
+	const { iconState, setIconState } = useContext(appContext);
+	const { toggleActiveIcon, toggleActiveName } = useToggleClassName();
 
 	function toggleActive(index: number) {
 		setIconState({ ...iconState, activeObject: index });
-	}
-
-	function toggleActiveIcon(index: number) {
-		if (iconState.objects[index].id === iconState.activeObject) {
-			return 'icon -translate-y-10 opacity-0';
-		} else {
-			return 'icon';
-		}
-	}
-
-	function toggleActiveName(index: number) {
-		if (iconState.objects[index].id === iconState.activeObject) {
-			return 'text translate-y-5';
-		} else {
-			return 'text opacity-0';
-		}
 	}
 
 	return (
@@ -83,7 +25,6 @@ const Navigation = () => {
 						return (
 							<div
 								key={index}
-								ref={(ref) => (refs.current[index] = ref)}
 								className='flex flex-col items-center pr-12 justify-center'
 								data-id={index}
 							>

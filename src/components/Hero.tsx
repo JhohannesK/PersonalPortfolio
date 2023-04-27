@@ -7,7 +7,7 @@ const Hero = () => {
 	return (
 		<div
 			id='hero'
-			className='flex flex-col items-center pt-24 px-10 md:flex-row md:items-center md:justify-center md:px-[10rem] md:pt-28 md:gap-x-40'
+			className='flex flex-col items-center pt-24 px-10 md:flex-row md:items-center md:justify-center md:px-[10rem] md:pt-28 md:gap-x-40 mb-[5rem]'
 		>
 			{/* Contains the image */}
 			<div className='rounded-xl max-w-[30rem] md:w-96 bg-gradient-to-r from-yellow-300 to-gray-700 border border-red-300'>
