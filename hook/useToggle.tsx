@@ -13,6 +13,10 @@ const useToggleClassName = () => {
 	}
 
 	function toggleActiveName(index: number) {
+		console.log(
+			'🚀 ~ file: useToggle.tsx:16 ~ toggleActiveName ~ index:',
+			index
+		);
 		if (iconState.objects[index].id === iconState.activeObject) {
 			return 'text translate-y-5';
 		} else {

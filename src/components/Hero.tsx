@@ -1,13 +1,45 @@
-import React from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import ImageOne from '../images/Mask Group 1.png';
 import peep from '../assets/images/Open Peeps Flat Assets/Flat Assets/Templates/Bust/peep-8.svg';
 import { Link } from 'react-scroll';
+import { appContext } from '../util/Context';
+import { IconNameType } from './@types';
 
 const Hero = () => {
+	const heroRef = useRef<HTMLDivElement>(null);
+
+	const { setHeroState } = useContext(appContext);
+
+	const [isIntersecting, setIsIntersecting] = useState<IconNameType>({
+		iconIndex: null,
+		isIntersecting: false,
+	});
+
+	useEffect(() => {
+		const observer = new IntersectionObserver(
+			([entries]) => {
+				setHeroState(entries.isIntersecting);
+			},
+			{
+				// root: null,
+				// rootMargin: '-100px',
+				threshold: 1.0,
+			}
+		);
+
+		if (heroRef.current) {
+			observer.observe(heroRef.current);
+		}
+		return () => {
+			observer.disconnect();
+		};
+	}, []);
+
 	return (
 		<div
 			id='hero'
-			className='flex flex-col items-center pt-24 px-10 md:flex-row md:items-center md:justify-center md:px-[10rem] md:pt-28 md:gap-x-40 mb-[5rem]'
+			ref={heroRef}
+			className='flex flex-col items-center pt-24 px-10 md:flex-row md:items-center md:justify-center md:px-[10rem] md:pt-[16rem] md:pb-[16rem] md:gap-x-40 '
 		>
 			{/* Contains the image */}
 			<div className='rounded-xl max-w-[30rem] md:w-96 bg-gradient-to-r from-yellow-300 to-gray-700 border border-red-300'>

@@ -10,3 +10,8 @@ export interface IconProps {
 	activeObject: number | null;
 	objects: objProps[];
 }
+
+export type IconNameType = {
+	iconIndex: number | null;
+	isIntersecting: boolean;
+};

@@ -3,31 +3,46 @@ import { IconProps } from '../components/@types';
 import { nav } from '../data/content/navlinks';
 
 interface IAppContext {
-	heroRef: React.RefObject<HTMLDivElement>;
-	aboutRef: React.RefObject<HTMLDivElement>;
-	techStackRef: React.RefObject<HTMLDivElement>;
+	heroState: boolean;
+	setHeroState: React.Dispatch<React.SetStateAction<boolean>>;
+	aboutState: boolean;
+	setAboutState: React.Dispatch<React.SetStateAction<boolean>>;
+	projectState: boolean;
+	setProjectState: React.Dispatch<React.SetStateAction<boolean>>;
 	iconState: IconProps;
 	setIconState: React.Dispatch<React.SetStateAction<IconProps>>;
 }
 
 export const appContext = createContext<IAppContext>({
-	heroRef: { current: null },
-	aboutRef: { current: null },
-	techStackRef: { current: null },
+	heroState: false,
+	setHeroState: () => {},
+	aboutState: false,
+	setAboutState: () => {},
+	projectState: false,
+	setProjectState: () => {},
 	iconState: { activeObject: null, objects: nav },
 	setIconState: () => {},
 });
 
 const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-	const aboutRef = useRef<HTMLDivElement>(null);
-	const heroRef = useRef<HTMLDivElement>(null);
-	const techStackRef = useRef<HTMLDivElement>(null);
+	const [heroState, setHeroState] = useState(false);
+	const [aboutState, setAboutState] = useState(false);
+	const [projectState, setProjectState] = useState(false);
 	const [iconState, setIconState] = useState<IconProps>({
 		activeObject: null,
 		objects: nav,
 	});
 
-	const value = { aboutRef, heroRef, techStackRef, iconState, setIconState };
+	const value = {
+		iconState,
+		setIconState,
+		heroState,
+		setHeroState,
+		aboutState,
+		setAboutState,
+		projectState,
+		setProjectState,
+	};
 
 	return <appContext.Provider value={value}>{children}</appContext.Provider>;
 };

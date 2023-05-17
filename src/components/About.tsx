@@ -5,25 +5,24 @@ import TechStack from './TechStack';
 import { appContext } from '../util/Context';
 
 const About = () => {
-	const [isIntersecting, setIsIntersecting] = useState<boolean>(false);
-	console.log(
-		'🚀 ~ file: About.tsx:8 ~ About ~ isIntersecting:',
-		isIntersecting
-	);
-	const { aboutRef } = useContext(appContext);
+	const aboutRef = useRef<HTMLDivElement>(null);
+
+	const { setAboutState } = useContext(appContext);
+
+	const [isIntersecting, setIsIntersecting] = useState(false);
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			([entries]) => {
-				setIsIntersecting(entries.isIntersecting);
-				console.log(isIntersecting);
+				setAboutState(entries.isIntersecting);
 			},
 			{
 				// root: null,
-				rootMargin: '-400px',
-				threshold: 0,
+				// rootMargin: '-100px',
+				threshold: 0.4,
 			}
 		);
+
 		if (aboutRef.current) {
 			observer.observe(aboutRef.current);
 		}
@@ -31,11 +30,12 @@ const About = () => {
 			observer.disconnect();
 		};
 	}, []);
+
 	return (
 		<div
 			ref={aboutRef}
 			id='about'
-			className='flex flex-col pt-16 md:pt-56 lg:pt-56 items-center justify-center gap-y-20'
+			className='flex flex-col pt-10 md:pt-56 lg:pt-56 items-center justify-center gap-y-20'
 		>
 			{/* About with cards */}
 			<div>

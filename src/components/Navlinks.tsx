@@ -1,20 +1,41 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { BiHomeAlt } from 'react-icons/bi';
-import { VscPerson } from 'react-icons/vsc';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-scroll';
-import { AiOutlineProject } from 'react-icons/ai';
-import { MdOutlineContactSupport } from 'react-icons/md';
-import { IconProps } from './@types';
 import { nav } from '../data/content/navlinks';
 import { appContext } from '../util/Context';
 import useToggleClassName from '../../hook/useToggle';
 
 const Navigation = () => {
-	const { iconState, setIconState } = useContext(appContext);
-	const { toggleActiveIcon, toggleActiveName } = useToggleClassName();
+	const { iconState, setIconState, heroState, projectState, aboutState } =
+		useContext(appContext);
 
 	function toggleActive(index: number) {
 		setIconState({ ...iconState, activeObject: index });
+	}
+
+	useEffect(() => {
+		if (heroState) {
+			toggleActive(0);
+		} else if (aboutState) {
+			toggleActive(1);
+		} else if (projectState) {
+			toggleActive(2);
+		}
+	}, [heroState, aboutState, projectState]);
+
+	function toggleActiveIcon(index: number) {
+		if (iconState.objects[index].id === iconState.activeObject) {
+			return 'icon -translate-y-10 opacity-0';
+		} else {
+			return 'icon';
+		}
+	}
+
+	function toggleActiveName(index: number) {
+		if (iconState.objects[index].id === iconState.activeObject) {
+			return 'text translate-y-5';
+		} else {
+			return 'text opacity-0';
+		}
 	}
 
 	return (
