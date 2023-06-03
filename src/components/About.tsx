@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { about } from '../data/content/about';
 import Card from './Card';
-import TechStack from './TechStack';
 import { appContext } from '../util/Context';
 
 const About = () => {

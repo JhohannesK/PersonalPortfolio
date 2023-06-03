@@ -10,7 +10,6 @@ import React, { useContext } from 'react';
 import useToggleClassName from '../hook/useToggle';
 
 function App() {
-
 	return (
 		<AppProvider>
 			<div className="bg-[url('./assets/images/blur-stain.jpg')] text-white bg-contain w-full">
