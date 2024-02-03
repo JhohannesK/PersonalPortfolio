@@ -59,7 +59,7 @@ const Hero = () => {
 					Domeh John Kelvin
 				</p>
 				<p className='text-xs sm:text-sm md:text-lg text-gray-400'>
-					Creative Frontend Engineer
+					Creative Software Engineer
 				</p>
 				<div className='flex items-center justify-center gap-x-4 pt-5'>
 					{/* TODO: Add download link
