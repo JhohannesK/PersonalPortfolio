@@ -6,25 +6,23 @@ import { SiGmail } from 'react-icons/si';
 // TODO: Make nice cards for projects
 
 const Contact = () => {
-	const projectRef = useRef<HTMLDivElement>(null);
-	const { setProjectState } = useContext(appContext);
-
-	const [isIntersecting, setIsIntersecting] = useState(false);
+	const contactRef = useRef<HTMLDivElement>(null);
+	const { setContactState } = useContext(appContext);
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			([entries]) => {
-				setProjectState(entries.isIntersecting);
+				setContactState(entries.isIntersecting);
 			},
 			{
 				// root: null,
-				rootMargin: '-200px',
-				// threshold: 1.0,
+				// rootMargin: '-200px',
+				threshold: 1.0,
 			}
 		);
 
-		if (projectRef.current) {
-			observer.observe(projectRef.current);
+		if (contactRef.current) {
+			observer.observe(contactRef.current);
 		}
 		return () => {
 			observer.disconnect();
@@ -32,7 +30,7 @@ const Contact = () => {
 	}, []);
 
 	return (
-		<div id='projects' className='h-[30rem] mt-[10rem] ' ref={projectRef}>
+		<div id='contact' className='h-[30rem] mt-[10rem] ' ref={contactRef}>
 			<div>
 				<p className='uppercase tracking-wider flex items-center justify-center text-center text-5xl  font-Maconda font-bold pb-5'>
 					Contact

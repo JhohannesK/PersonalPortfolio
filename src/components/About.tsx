@@ -8,8 +8,6 @@ const About = () => {
 
 	const { setAboutState } = useContext(appContext);
 
-	const [isIntersecting, setIsIntersecting] = useState(false);
-
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			([entries]) => {

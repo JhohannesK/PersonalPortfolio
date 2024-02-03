@@ -7,10 +7,10 @@ interface IAppContext {
 	setHeroState: React.Dispatch<React.SetStateAction<boolean>>;
 	aboutState: boolean;
 	setAboutState: React.Dispatch<React.SetStateAction<boolean>>;
-	projectState: boolean;
-	setProjectState: React.Dispatch<React.SetStateAction<boolean>>;
 	iconState: IconProps;
 	setIconState: React.Dispatch<React.SetStateAction<IconProps>>;
+	contactState: boolean;
+	setContactState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const appContext = createContext<IAppContext>({
@@ -18,16 +18,16 @@ export const appContext = createContext<IAppContext>({
 	setHeroState: () => {},
 	aboutState: false,
 	setAboutState: () => {},
-	projectState: false,
-	setProjectState: () => {},
 	iconState: { activeObject: null, objects: nav },
 	setIconState: () => {},
+	contactState: false,
+	setContactState: () => {},
 });
 
 const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 	const [heroState, setHeroState] = useState(false);
 	const [aboutState, setAboutState] = useState(false);
-	const [projectState, setProjectState] = useState(false);
+	const [contactState, setContactState] = useState(false);
 	const [iconState, setIconState] = useState<IconProps>({
 		activeObject: null,
 		objects: nav,
@@ -40,8 +40,8 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 		setHeroState,
 		aboutState,
 		setAboutState,
-		projectState,
-		setProjectState,
+		contactState,
+		setContactState,
 	};
 
 	return <appContext.Provider value={value}>{children}</appContext.Provider>;

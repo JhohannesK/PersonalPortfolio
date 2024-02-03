@@ -20,7 +20,7 @@ export const nav = [
 	},
 	{
 		id: 2,
-		offset: 50,
+		offset: 200,
 		icon: <MdOutlineContactSupport />,
 		name: 'Contact',
 		to: 'contact',

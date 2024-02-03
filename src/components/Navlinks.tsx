@@ -5,7 +5,7 @@ import { appContext } from '../util/Context';
 import useToggleClassName from '../../hook/useToggle';
 
 const Navigation = () => {
-	const { iconState, setIconState, heroState, projectState, aboutState } =
+	const { iconState, setIconState, heroState, aboutState, contactState } =
 		useContext(appContext);
 
 	function toggleActive(index: number) {
@@ -17,10 +17,10 @@ const Navigation = () => {
 			toggleActive(0);
 		} else if (aboutState) {
 			toggleActive(1);
-		} else if (projectState) {
+		} else if (contactState) {
 			toggleActive(2);
 		}
-	}, [heroState, aboutState, projectState]);
+	}, [heroState, aboutState, contactState]);
 
 	function toggleActiveIcon(index: number) {
 		if (iconState.objects[index].id === iconState.activeObject) {
