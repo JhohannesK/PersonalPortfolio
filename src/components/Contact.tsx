@@ -45,13 +45,19 @@ const Contact = () => {
 			</div>
 			<div className='mt-7 flex gap-10 w-full items-center max-w-[800px] mx-auto px-5 justify-between'>
 				<div className='hover:text-blue-500 duration-300 transition-all cursor-pointer'>
-					<FaTwitter size={50} />
+					<a href='http://www.twitter.com/_jhohannes'>
+						<FaTwitter size={50} />
+					</a>
 				</div>
 				<div className='hover:text-zinc-500 duration-300 transition-all cursor-pointer'>
-					<FaGithub size={50} />
+					<a href='http://www.github.com/jhohannesK'>
+						<FaGithub size={50} />
+					</a>
 				</div>
 				<div className='hover:text-red-500 duration-300 transition-all cursor-pointer'>
-					<SiGmail size={50} />
+					<a href='mailto:jdomeh77@gmail.com'>
+						<SiGmail size={50} />
+					</a>
 				</div>
 			</div>
 		</div>
