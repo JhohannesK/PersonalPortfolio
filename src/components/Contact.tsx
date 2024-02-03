@@ -30,7 +30,7 @@ const Contact = () => {
 	}, []);
 
 	return (
-		<div id='contact' className='h-[30rem] mt-[10rem] ' ref={contactRef}>
+		<div id='contact' className='h-[20rem] mt-[10rem] ' ref={contactRef}>
 			<div>
 				<p className='uppercase tracking-wider flex items-center justify-center text-center text-5xl  font-Maconda font-bold pb-5'>
 					Contact
