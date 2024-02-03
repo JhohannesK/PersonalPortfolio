@@ -24,7 +24,7 @@ const TechStack = () => {
 							<li>'CSS3'</li>
 							<li>'Java'</li>
 							<li>'Golang'</li>
-							{/* <li>''</li> */}
+							<li>'C#'</li>
 							<li className='text-white'>];</li>
 						</ul>
 					</pre>
@@ -43,6 +43,8 @@ const TechStack = () => {
 							<li>'Django'</li>
 							<li>'Prisma'</li>
 							<li>'TailwindCss'</li>
+							<li>'.Net'</li>
+							<li>'Express'</li>
 							<li className='text-white'>];</li>
 						</ul>
 					</pre>

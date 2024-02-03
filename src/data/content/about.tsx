@@ -13,16 +13,16 @@ export const about: IAbout[] = [
 	{
 		title: 'Experience',
 		icon: <GiStarMedal />,
-		abb: '+1 year of experience',
+		abb: '+2 year of experience',
 	},
 	{
 		title: 'Clients',
 		icon: <BsPeopleFill />,
-		abb: '+20 clients worldwide',
+		abb: '+10 clients worldwide',
 	},
 	{
 		title: 'Projects',
 		icon: <SiFiles />,
-		abb: '+10 projects done',
+		abb: '+30 projects done',
 	},
 ];

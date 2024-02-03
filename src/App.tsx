@@ -3,11 +3,9 @@ import Hero from './components/Hero';
 import Navigation from './components/Navlinks';
 import About from './components/About';
 import TechStack from './components/TechStack';
-import Projects from './components/Projects';
 import Footer from './components/Footer';
 import AppProvider, { appContext } from './util/Context';
-import React, { useContext } from 'react';
-import useToggleClassName from '../hook/useToggle';
+import Contact from './components/Contact';
 
 function App() {
 	return (
@@ -20,7 +18,7 @@ function App() {
 						<Navigation />
 						<About />
 						<TechStack />
-						<Projects />
+						<Contact />
 						<Footer />
 					</div>
 				</div>
