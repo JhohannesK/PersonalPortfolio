@@ -1,8 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100&family=Macondo&family=Source+Code+Pro:wght@400;500&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+	--font-Maconda: 'Macondo', cursive;
+	--font-Source-code: 'Source Code Pro', monospace;
+	--font-Exo: 'Exo 2', sans-serif;
+	--animate-float1: float 5s ease-in-out infinite;
+	--animate-float2: float 6s ease-in-out infinite;
+	--animate-float3: float 7s ease-in-out infinite;
+}
+
+@keyframes float {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-15px);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
 
 .btn {
 	@apply border p-3 rounded-md text-sm transition duration-500;
