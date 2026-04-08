@@ -1,16 +1,17 @@
-import { ReactNode, createContext, useRef, useState } from 'react';
+import { createContext, useState } from 'react';
+import type { Dispatch, FC, ReactNode, SetStateAction } from 'react';
 import { IconProps } from '../components/@types';
 import { nav } from '../data/content/navlinks';
 
 interface IAppContext {
 	heroState: boolean;
-	setHeroState: React.Dispatch<React.SetStateAction<boolean>>;
+	setHeroState: Dispatch<SetStateAction<boolean>>;
 	aboutState: boolean;
-	setAboutState: React.Dispatch<React.SetStateAction<boolean>>;
+	setAboutState: Dispatch<SetStateAction<boolean>>;
 	iconState: IconProps;
-	setIconState: React.Dispatch<React.SetStateAction<IconProps>>;
+	setIconState: Dispatch<SetStateAction<IconProps>>;
 	contactState: boolean;
-	setContactState: React.Dispatch<React.SetStateAction<boolean>>;
+	setContactState: Dispatch<SetStateAction<boolean>>;
 }
 
 export const appContext = createContext<IAppContext>({
@@ -24,7 +25,7 @@ export const appContext = createContext<IAppContext>({
 	setContactState: () => {},
 });
 
-const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+const AppProvider: FC<{ children: ReactNode }> = ({ children }) => {
 	const [heroState, setHeroState] = useState(false);
 	const [aboutState, setAboutState] = useState(false);
 	const [contactState, setContactState] = useState(false);

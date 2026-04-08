@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100&family=Macondo&family=Source+Code+Pro:wght@400;500&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.cjs";
 
 .btn {
 	@apply border p-3 rounded-md text-sm transition duration-500;

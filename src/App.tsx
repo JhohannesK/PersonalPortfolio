@@ -4,7 +4,7 @@ import Navigation from './components/Navlinks';
 import About from './components/About';
 import TechStack from './components/TechStack';
 import Footer from './components/Footer';
-import AppProvider, { appContext } from './util/Context';
+import AppProvider from './util/Context';
 import Contact from './components/Contact';
 
 function App() {
