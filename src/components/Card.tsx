@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import type { ReactElement } from 'react';
 
 interface Props {
-	items: { title: string; icon: JSX.Element; abb: string };
+	items: { title: string; icon: ReactElement; abb: string };
 }
 
 const Card = (props: Props) => {

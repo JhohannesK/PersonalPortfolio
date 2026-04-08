@@ -1,11 +1,11 @@
 import { GiStarMedal } from 'react-icons/gi';
 import { BsPeopleFill } from 'react-icons/bs';
 import { SiFiles } from 'react-icons/si';
-import { IconType } from 'react-icons';
+import type { ReactElement } from 'react';
 
 interface IAbout {
 	title: string;
-	icon: JSX.Element;
+	icon: ReactElement;
 	abb: string;
 }
 
