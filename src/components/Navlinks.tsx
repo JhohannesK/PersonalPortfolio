@@ -5,8 +5,14 @@ import { appContext } from '../util/Context';
 import useToggleClassName from '../../hook/useToggle';
 
 const Navigation = () => {
-	const { iconState, setIconState, heroState, aboutState, contactState } =
-		useContext(appContext);
+	const {
+		iconState,
+		setIconState,
+		heroState,
+		aboutState,
+		projectsState,
+		contactState,
+	} = useContext(appContext);
 
 	function toggleActive(index: number) {
 		setIconState({ ...iconState, activeObject: index });
@@ -17,10 +23,12 @@ const Navigation = () => {
 			toggleActive(0);
 		} else if (aboutState) {
 			toggleActive(1);
-		} else if (contactState) {
+		} else if (projectsState) {
 			toggleActive(2);
+		} else if (contactState) {
+			toggleActive(3);
 		}
-	}, [heroState, aboutState, contactState]);
+	}, [heroState, aboutState, projectsState, contactState]);
 
 	function toggleActiveIcon(index: number) {
 		if (iconState.objects[index].id === iconState.activeObject) {
@@ -40,7 +48,7 @@ const Navigation = () => {
 
 	return (
 		<div className=''>
-			<nav className='fixed bottom-[2rem] left-[50%]  [transform:translateX(-50%)] flex items-center  text-yellow-300 sm:w-[360px] h-20 bg-zinc-700  bg-opacity-30 z-10 rounded-full px-5 '>
+			<nav className='fixed bottom-[2rem] left-[50%]  [transform:translateX(-50%)] flex items-center  text-yellow-300 sm:w-[460px] h-20 bg-zinc-700  bg-opacity-30 z-10 rounded-full px-5 '>
 				<div className=' flex item-center justify-center  uppercase font-bold text-sm pl-12 font-mono w-full'>
 					{nav.map((item, index) => {
 						return (

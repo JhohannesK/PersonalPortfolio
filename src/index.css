@@ -37,3 +37,8 @@
 .social3 {
 	@apply animate-float3;
 }
+
+.project-card {
+	transform-style: preserve-3d;
+	will-change: transform;
+}

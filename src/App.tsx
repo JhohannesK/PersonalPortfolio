@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import Navigation from './components/Navlinks';
 import About from './components/About';
 import TechStack from './components/TechStack';
+import Projects from './components/Projects';
 import Footer from './components/Footer';
 import AppProvider from './util/Context';
 import Contact from './components/Contact';
@@ -18,6 +19,7 @@ function App() {
 						<Navigation />
 						<About />
 						<TechStack />
+						<Projects />
 						<Contact />
 						<Footer />
 					</div>

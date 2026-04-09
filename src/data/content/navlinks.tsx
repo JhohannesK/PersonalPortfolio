@@ -20,6 +20,13 @@ export const nav = [
 	},
 	{
 		id: 2,
+		offset: 0,
+		icon: <AiOutlineProject />,
+		name: 'Projects',
+		to: 'projects',
+	},
+	{
+		id: 3,
 		offset: 200,
 		icon: <MdOutlineContactSupport />,
 		name: 'Contact',
