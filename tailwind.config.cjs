@@ -3,6 +3,12 @@ module.exports = {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
 		extend: {
+			fontFamily: {
+				sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				Nunito: ['Nunito', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				Maconda: ["'Macondo'", 'cursive'],
+				'Source-code': ["'Source Code Pro'", 'monospace'],
+			},
 			animation: {
 				float1: 'float 5s ease-in-out infinite',
 				float2: 'float 6s ease-in-out infinite',
@@ -15,11 +21,6 @@ module.exports = {
 					'100%': { transform: 'translateY(0)' },
 				},
 			},
-		},
-		fontFamily: {
-			Maconda: ["'Macondo'", 'cursive'],
-			'Source-code': ["'Source Code Pro'", 'monospace'],
-			Exo: ["'Exo 2'", 'sans - serif'],
 		},
 	},
 	plugins: [],
