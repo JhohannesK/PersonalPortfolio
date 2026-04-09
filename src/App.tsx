@@ -2,6 +2,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Navigation from './components/Navlinks';
 import About from './components/About';
+import Projects from './components/Projects';
 import TechStack from './components/TechStack';
 import Footer from './components/Footer';
 import AppProvider from './util/Context';
@@ -17,6 +18,7 @@ function App() {
 						<Hero />
 						<Navigation />
 						<About />
+						<Projects />
 						<TechStack />
 						<Contact />
 						<Footer />
