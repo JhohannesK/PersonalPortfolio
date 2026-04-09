@@ -1,56 +1,95 @@
 import React from 'react';
 
 const TechStack = () => {
+	const languages = [
+		'Python',
+		'JavaScript',
+		'TypeScript',
+		'HTML5',
+		'CSS3',
+		'Java',
+		'Golang',
+		'C#',
+	];
+
+	const frameworks = [
+		'React',
+		'Next.js',
+		'Django',
+		'Prisma',
+		'Tailwind CSS',
+		'.NET',
+		'Express',
+	];
+
+	const tools = ['Git', 'Docker', 'Vite', 'Figma', 'Postman', 'Linux'];
+
 	return (
-		<div className=' mt-12 p-5'>
-			<div>
-				<p className='text-5xl text-center font-bold font-Maconda uppercase tracking-wider'>
-					Tech Stack
-				</p>
-			</div>
-			<section className='pt-5 text-2xl sm:flex sm:justify-between md:justify-around space-y-8 sm:space-y-0 font-Source-code'>
-				{/* Languages */}
-				<div className=''>
-					<p>
-						<span className='text-purple-700'>let</span>{' '}
-						<span className='text-red-600'>languages</span> = [
-					</p>
-					<pre className='pl-12 text-yellow-400'>
-						<ul>
-							<li>'Python'</li>
-							<li>'JavaScript'</li>
-							<li>'TypeScript'</li>
-							<li>'HTML5'</li>
-							<li>'CSS3'</li>
-							<li>'Java'</li>
-							<li>'Golang'</li>
-							<li>'C#'</li>
-							<li className='text-white'>];</li>
-						</ul>
-					</pre>
+		<section id='stack' className='mt-20 px-5'>
+			<p className='text-5xl text-center font-bold font-Maconda uppercase tracking-wider'>
+				Tech Stack
+			</p>
+
+			<div className='terminal-window mt-8 max-w-5xl mx-auto font-Source-code'>
+				<div className='terminal-top'>
+					<div className='terminal-lights'>
+						<span className='terminal-light bg-red-500' />
+						<span className='terminal-light bg-yellow-400' />
+						<span className='terminal-light bg-green-500' />
+					</div>
+					<p className='text-xs text-zinc-400'>/usr/portfolio/skills</p>
 				</div>
 
-				{/* Frameworks */}
-				<div>
-					<p>
-						<span className='text-purple-700'>let</span>{' '}
-						<span className='text-red-600'>frameworks</span> = [
-					</p>
-					<pre className='pl-12 text-yellow-400'>
-						<ul>
-							<li>'Reactjs'</li>
-							<li>'Nextjs'</li>
-							<li>'Django'</li>
-							<li>'Prisma'</li>
-							<li>'TailwindCss'</li>
-							<li>'.Net'</li>
-							<li>'Express'</li>
-							<li className='text-white'>];</li>
-						</ul>
-					</pre>
+				<div className='terminal-body'>
+					<div className='terminal-row'>
+						<span className='terminal-prompt'>kelvin@portfolio:~$</span>
+						<span className='text-zinc-200'>./stack --list languages</span>
+					</div>
+					<ul className='terminal-output'>
+						{languages.map((language, index) => {
+							return (
+								<li key={language}>
+									<span className='text-zinc-500'>{index + 1}.</span> {language}
+								</li>
+							);
+						})}
+					</ul>
+
+					<div className='terminal-row pt-5'>
+						<span className='terminal-prompt'>kelvin@portfolio:~$</span>
+						<span className='text-zinc-200'>./stack --list frameworks</span>
+					</div>
+					<ul className='terminal-output'>
+						{frameworks.map((framework, index) => {
+							return (
+								<li key={framework}>
+									<span className='text-zinc-500'>{index + 1}.</span> {framework}
+								</li>
+							);
+						})}
+					</ul>
+
+					<div className='terminal-row pt-5'>
+						<span className='terminal-prompt'>kelvin@portfolio:~$</span>
+						<span className='text-zinc-200'>./stack --list tools</span>
+					</div>
+					<ul className='terminal-output'>
+						{tools.map((tool, index) => {
+							return (
+								<li key={tool}>
+									<span className='text-zinc-500'>{index + 1}.</span> {tool}
+								</li>
+							);
+						})}
+					</ul>
+
+					<div className='terminal-row pt-5'>
+						<span className='terminal-prompt'>kelvin@portfolio:~$</span>
+						<span className='terminal-cursor'>_</span>
+					</div>
 				</div>
-			</section>
-		</div>
+			</div>
+		</section>
 	);
 };
 

@@ -37,3 +37,110 @@
 .social3 {
 	@apply animate-float3;
 }
+
+.terminal-window {
+	@apply border border-zinc-700 rounded-2xl bg-zinc-950/90 shadow-2xl overflow-hidden;
+}
+
+.terminal-top {
+	@apply flex items-center justify-between px-4 py-3 border-b border-zinc-800 bg-zinc-900/80;
+}
+
+.terminal-lights {
+	@apply flex items-center gap-2;
+}
+
+.terminal-light {
+	@apply h-3 w-3 rounded-full;
+}
+
+.terminal-body {
+	@apply px-4 py-5 sm:px-6;
+}
+
+.terminal-row {
+	@apply flex flex-wrap gap-x-2 text-sm sm:text-base;
+}
+
+.terminal-prompt {
+	@apply text-green-400;
+}
+
+.terminal-output {
+	@apply mt-2 pl-5 space-y-1 text-yellow-300 text-sm sm:text-base;
+}
+
+.terminal-cursor {
+	@apply text-green-400 animate-pulse;
+}
+
+.project-stage {
+	perspective: 1400px;
+}
+
+.project-card-3d {
+	position: relative;
+	overflow: hidden;
+	transform-style: preserve-3d;
+	transform: rotateY(var(--project-rotate)) rotateX(8deg);
+	border-radius: 1rem;
+	border: 1px solid rgb(63 63 70 / 0.9);
+	padding: 1.25rem;
+	background: linear-gradient(
+		145deg,
+		rgba(24, 24, 27, 0.95),
+		rgba(9, 9, 11, 0.97)
+	);
+	box-shadow: 0 16px 45px -18px rgb(0 0 0 / 0.9),
+		0 0 0 1px color-mix(in srgb, var(--project-accent) 45%, transparent);
+	transition: transform 450ms ease, box-shadow 450ms ease, border-color 450ms ease;
+}
+
+.project-card-3d::before {
+	content: '';
+	position: absolute;
+	inset: -60% 0 auto;
+	height: 55%;
+	background: radial-gradient(
+		circle at center,
+		color-mix(in srgb, var(--project-accent) 50%, transparent),
+		transparent 70%
+	);
+	opacity: 0.4;
+	transform: translateZ(12px);
+	pointer-events: none;
+}
+
+.project-card-3d:hover {
+	transform: rotateY(0deg) rotateX(0deg) translateY(-12px) translateZ(24px);
+	border-color: color-mix(in srgb, var(--project-accent) 65%, rgb(63 63 70));
+	box-shadow: 0 24px 55px -20px rgb(0 0 0 / 1),
+		0 0 0 1px color-mix(in srgb, var(--project-accent) 60%, transparent);
+}
+
+.project-grid {
+	position: absolute;
+	inset: 0;
+	background-image: linear-gradient(
+			to right,
+			rgba(82, 82, 91, 0.2) 1px,
+			transparent 1px
+		),
+		linear-gradient(to bottom, rgba(82, 82, 91, 0.2) 1px, transparent 1px);
+	background-size: 18px 18px;
+	mask-image: linear-gradient(to bottom, transparent, black 30%, black 100%);
+	opacity: 0.18;
+	pointer-events: none;
+}
+
+.project-list-item {
+	position: relative;
+	padding-left: 1rem;
+}
+
+.project-list-item::before {
+	content: '>';
+	position: absolute;
+	left: 0;
+	color: color-mix(in srgb, var(--project-accent) 60%, white);
+}
