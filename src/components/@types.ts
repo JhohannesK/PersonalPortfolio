@@ -1,7 +1,9 @@
+import type { ReactElement } from 'react';
+
 export interface objProps {
 	id: number;
 	offset: number;
-	icon: JSX.Element;
+	icon: ReactElement;
 	name: string;
 	to: string;
 }
