@@ -27,7 +27,7 @@ const TechStack = () => {
 	return (
 		<section id='stack' className='mt-20 px-5'>
 			<p className='text-5xl text-center font-bold font-Maconda uppercase tracking-wider'>
-				Tech Stack
+				<span className='contact-headline-shimmer'>Tech Stack</span>
 			</p>
 
 			<div className='terminal-window mt-8 max-w-5xl mx-auto font-Source-code'>

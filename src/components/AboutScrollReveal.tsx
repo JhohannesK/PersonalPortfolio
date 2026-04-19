@@ -90,8 +90,8 @@ export default function AboutScrollReveal() {
 			className="about-scroll-track relative min-h-[200vh] w-full"
 		>
 			<div className="about-scroll-sticky sticky top-0 flex min-h-[min(85vh,820px)] flex-col justify-center px-0 pb-16 pt-8 md:pb-24 md:pt-12">
-				<h2 className="w-full text-center text-4xl font-bold font-Maconda uppercase tracking-wider text-zinc-50 sm:text-5xl">
-					About me
+				<h2 className="w-full text-center text-4xl font-bold font-Maconda uppercase tracking-wider sm:text-5xl">
+					<span className="contact-headline-shimmer">About me</span>
 				</h2>
 
 				<div

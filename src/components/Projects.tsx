@@ -37,7 +37,7 @@ const Projects = () => {
 			className="mt-24 px-5 md:px-10 lg:px-16 flex flex-col items-center"
 		>
 			<p className="text-5xl text-center font-bold font-Maconda uppercase tracking-wider">
-				Projects
+				<span className="contact-headline-shimmer">Projects</span>
 			</p>
 			<p className="text-center text-zinc-300 pt-4 max-w-3xl">
 				In code and cloud, my visions cast, From playful sites to systems vast.
