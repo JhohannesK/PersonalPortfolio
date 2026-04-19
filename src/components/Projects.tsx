@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from 'react';
-import { projects } from '../data/content/projects';
+import { projects, type ProjectRepoLink } from '../data/content/projects';
 import { appContext } from '../util/Context';
 
 type ProjectCardStyle = React.CSSProperties & {
@@ -104,6 +104,35 @@ const Projects = () => {
 										);
 									})}
 								</div>
+
+								{(project.liveUrl ||
+									(project.repoLinks && project.repoLinks.length > 0)) && (
+									<div className="pt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+										{project.liveUrl && (
+											<a
+												href={project.liveUrl}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="font-medium text-(--project-accent) underline decoration-zinc-500 underline-offset-4 transition hover:decoration-(--project-accent)"
+											>
+												Live demo
+											</a>
+										)}
+										{project.repoLinks?.map((link: ProjectRepoLink) => {
+											return (
+												<a
+													key={`${link.label}-${link.href}`}
+													href={link.href}
+													target="_blank"
+													rel="noopener noreferrer"
+													className="text-zinc-400 underline decoration-zinc-600 underline-offset-4 transition hover:text-zinc-200"
+												>
+													{link.label}
+												</a>
+											);
+										})}
+									</div>
+								)}
 							</div>
 						</article>
 					);

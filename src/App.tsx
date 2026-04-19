@@ -7,13 +7,18 @@ import TechStack from './components/TechStack';
 import Footer from './components/Footer';
 import AppProvider from './util/Context';
 import Contact from './components/Contact';
+import PageIntro from './components/PageIntro';
 
 function App() {
 	return (
 		<AppProvider>
-			<div className="bg-[url('./assets/images/blur-stain.jpg')] text-white bg-contain w-full font-sans antialiased">
-				<div className='bg-zinc-900 opacity-90 '>
-					<div className='2xl:max-w-7xl mx-auto'>
+			<PageIntro>
+				<div className="relative w-full bg-zinc-950 bg-[url('./assets/images/blur-stain.jpg')] bg-contain bg-no-repeat bg-top text-white font-sans antialiased">
+					<div
+						className="pointer-events-none absolute inset-0 bg-zinc-950/86"
+						aria-hidden
+					/>
+					<div className="relative z-10 mx-auto 2xl:max-w-7xl">
 						<Header />
 						<Hero />
 						<Navigation />
@@ -24,7 +29,7 @@ function App() {
 						<Footer />
 					</div>
 				</div>
-			</div>
+			</PageIntro>
 		</AppProvider>
 	);
 }

@@ -1,51 +1,64 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { about } from '../data/content/about';
-import Card from './Card';
+import AboutBentoCard from './AboutBentoCard';
+import AboutScrollReveal from './AboutScrollReveal';
 import { appContext } from '../util/Context';
 
 const About = () => {
 	const aboutRef = useRef<HTMLDivElement>(null);
-
+	const [revealed, setRevealed] = useState(false);
 	const { setAboutState } = useContext(appContext);
 
 	useEffect(() => {
+		const reduce =
+			typeof window !== 'undefined' &&
+			window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		if (reduce) setRevealed(true);
+
 		const observer = new IntersectionObserver(
-			([entries]) => {
-				setAboutState(entries.isIntersecting);
+			([entry]) => {
+				setAboutState(entry.isIntersecting);
+				if (entry.isIntersecting) setRevealed(true);
 			},
-			{
-				// root: null,
-				// rootMargin: '-100px',
-				threshold: 0.4,
-			}
+			{ threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
 		);
 
-		if (aboutRef.current) {
-			observer.observe(aboutRef.current);
-		}
-		return () => {
-			observer.disconnect();
-		};
+		const node = aboutRef.current;
+		if (node) observer.observe(node);
+		return () => observer.disconnect();
 	}, []);
 
 	return (
 		<div
 			ref={aboutRef}
-			id='about'
-			className='flex flex-col pt-10 md:pt-56 lg:pt-56 items-center justify-center gap-y-20'
+			id="about"
+			className={`about-section relative px-5 pb-24 pt-10 md:pb-32 md:pt-14 ${revealed ? 'about-section--visible' : ''}`}
 		>
-			{/* About with cards */}
-			<div>
-				<p className='uppercase tracking-wider flex items-center justify-center text-center text-5xl  font-Maconda font-bold pb-5'>
-					About
-				</p>
-				<div className='grid grid-rows-3 gap-y-5 text-white px-20 md:grid-cols-2 lg:grid-cols-3 md:gap-x-5 items-center justify-center  bg-opacity-60 md:pl-36 md:pt-20 lg:flex lg:px-20 lg:py-10'>
-					{React.Children.toArray(
-						about.map((item) => {
-							return <Card items={item} />;
-						})
-					)}
-				</div>
+			<div
+				className="about-noise about-noise--subtle"
+				aria-hidden
+			/>
+
+			<div className="relative z-10 mx-auto max-w-6xl">
+				<AboutScrollReveal />
+
+				{/* <div className='about-bento-below mt-4 grid grid-cols-1 gap-5 md:mt-8 md:grid-cols-12 md:gap-6'>
+					<AboutBentoCard
+						item={about[0]}
+						index={0}
+						className='md:col-span-7'
+					/>
+					<AboutBentoCard
+						item={about[1]}
+						index={1}
+						className='md:col-span-5'
+					/>
+					<AboutBentoCard
+						item={about[2]}
+						index={2}
+						className='md:col-span-12 lg:col-span-8 lg:col-start-3'
+					/>
+				</div> */}
 			</div>
 		</div>
 	);
