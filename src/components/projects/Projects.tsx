@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef } from 'react';
-import { projects, type ProjectRepoLink } from '../data/content/projects';
-import { appContext } from '../util/Context';
+import { projects, type ProjectRepoLink } from '../../data/content/projects';
+import { appContext } from '../../util/Context';
 
 type ProjectCardStyle = React.CSSProperties & {
 	'--project-rotate': string;
@@ -34,12 +34,12 @@ const Projects = () => {
 		<section
 			id="projects"
 			ref={projectsRef}
-			className="mt-24 px-5 md:px-10 lg:px-16 flex flex-col items-center"
+			className="relative z-10 mt-16 flex flex-col items-center px-5 md:mt-24 md:px-10 lg:px-16"
 		>
-			<p className="text-5xl text-center font-bold font-Maconda uppercase tracking-wider">
+			<p className="text-center text-5xl font-bold uppercase tracking-wider">
 				<span className="contact-headline-shimmer">Projects</span>
 			</p>
-			<p className="text-center text-zinc-300 pt-4 max-w-3xl">
+			<p className="max-w-3xl pt-4 text-center text-muted">
 				In code and cloud, my visions cast, From playful sites to systems vast.
 				Interactive tales and tools refined, Art and logic intertwined.
 				Frameworks learn, designs unfold, Every project—new stories told.
@@ -63,23 +63,23 @@ const Projects = () => {
 							<div className="relative z-10">
 								<div className="flex items-start justify-between gap-4">
 									<div>
-										<p className="text-xs uppercase tracking-[0.2em] text-zinc-400">
+										<p className="text-xs uppercase tracking-[0.2em] text-muted">
 											{project.kind}
 										</p>
-										<h3 className="text-2xl font-bold text-zinc-50 pt-1">
+										<h3 className="pt-1 text-2xl font-bold text-fg">
 											{project.title}
 										</h3>
 									</div>
-									<span className="text-[0.65rem] uppercase tracking-wider rounded-full border border-zinc-600 px-2 py-1 text-zinc-300">
+									<span className="rounded-full border border-border px-2 py-1 text-[0.65rem] uppercase tracking-wider text-fg-secondary">
 										{project.status}
 									</span>
 								</div>
 
-								<p className="text-sm text-zinc-300 leading-relaxed pt-4">
+								<p className="pt-4 text-sm leading-relaxed text-muted">
 									{project.summary}
 								</p>
 
-								<ul className="pt-4 space-y-2 text-sm text-zinc-200">
+								<ul className="space-y-2 pt-4 text-sm text-fg-secondary">
 									{project.highlights.map((highlight) => {
 										return (
 											<li
@@ -97,7 +97,7 @@ const Projects = () => {
 										return (
 											<span
 												key={item}
-												className="rounded-full border border-zinc-600 px-3 py-1 text-xs text-zinc-300"
+												className="rounded-full border border-border px-3 py-1 text-xs text-fg-secondary"
 											>
 												{item}
 											</span>
@@ -125,7 +125,7 @@ const Projects = () => {
 													href={link.href}
 													target="_blank"
 													rel="noopener noreferrer"
-													className="text-zinc-400 underline decoration-zinc-600 underline-offset-4 transition hover:text-zinc-200"
+													className="text-muted underline decoration-border underline-offset-4 transition hover:text-fg-secondary"
 												>
 													{link.label}
 												</a>

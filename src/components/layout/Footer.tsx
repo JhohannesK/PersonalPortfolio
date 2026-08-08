@@ -20,13 +20,13 @@ const Footer = () => {
 
 				<div className='flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between lg:gap-10'>
 					<div className='site-footer-brand max-w-md'>
-						<p className='font-mono text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-yellow-300/85'>
+						<p className='text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-accent-soft/85'>
 							Portfolio
 						</p>
-						<p className='mt-3 text-2xl font-semibold tracking-tight text-zinc-50 md:text-3xl'>
+						<p className='mt-3 text-2xl font-semibold tracking-tight text-fg md:text-3xl'>
 							Domeh John Kelvin
 						</p>
-						<p className='mt-2 text-sm leading-relaxed text-zinc-500 md:text-[0.95rem]'>
+						<p className='mt-2 text-sm leading-relaxed text-muted md:text-[0.95rem]'>
 							Full-stack &amp; frontend craft — shipping interfaces that feel as good
 							as they look.
 						</p>
@@ -53,11 +53,11 @@ const Footer = () => {
 					</nav>
 				</div>
 
-				<div className='site-footer-bottom mt-12 flex flex-col items-start justify-between gap-6 border-t border-zinc-800/90 pt-8 sm:flex-row sm:items-center'>
-					<p className='font-Source-code text-xs text-zinc-500'>
-						<span className='text-zinc-400'>© {new Date().getFullYear()}</span>
+				<div className='site-footer-bottom mt-12 flex flex-col items-start justify-between gap-6 border-t border-border pt-8 sm:flex-row sm:items-center'>
+					<p className='text-xs text-muted-strong'>
+						<span className='text-muted'>© {new Date().getFullYear()}</span>
 						{' · '}
-						<span className='text-zinc-500'>Built with care</span>
+						<span className='text-muted-strong'>Built with care</span>
 					</p>
 
 					<Link

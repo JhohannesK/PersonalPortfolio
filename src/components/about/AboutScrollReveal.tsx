@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import {
 	ABOUT_INTRO_ACCENT,
 	ABOUT_INTRO_FULL,
-} from '../data/content/aboutStatement';
+} from '../../data/content/aboutStatement';
 
 type WordToken = { text: string; accent: boolean };
 
@@ -36,7 +36,7 @@ function scrollProgressThrough(el: HTMLElement | null) {
 	return clamp(-rect.top / denom, 0, 1);
 }
 
-const CORAL = 'rgb(250, 204, 21)';
+const CORAL = 'var(--accent)';
 
 export default function AboutScrollReveal() {
 	const trackRef = useRef<HTMLDivElement>(null);
@@ -90,7 +90,7 @@ export default function AboutScrollReveal() {
 			className="about-scroll-track relative min-h-[200vh] w-full"
 		>
 			<div className="about-scroll-sticky sticky top-0 flex min-h-[min(85vh,820px)] flex-col justify-center px-0 pb-16 pt-8 md:pb-24 md:pt-12">
-				<h2 className="w-full text-center text-4xl font-bold font-Maconda uppercase tracking-wider sm:text-5xl">
+				<h2 className="w-full text-center text-4xl font-bold uppercase tracking-wider sm:text-5xl">
 					<span className="contact-headline-shimmer">About me</span>
 				</h2>
 
@@ -115,7 +115,7 @@ export default function AboutScrollReveal() {
 						style={spotlightStyle}
 						aria-hidden
 					/>
-					<p className="about-scroll-lead relative z-20 text-center text-[clamp(1.65rem,4.5vw,3.35rem)] font-bold leading-[1.12] tracking-tight text-zinc-100">
+					<p className="about-scroll-lead relative z-20 text-center text-[clamp(1.65rem,4.5vw,3.35rem)] font-bold leading-[1.12] tracking-tight text-fg">
 						{words.map((w, i) => {
 							const t = reducedMotion
 								? 1

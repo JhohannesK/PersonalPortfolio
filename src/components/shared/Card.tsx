@@ -17,7 +17,7 @@ const Card = (props: Props) => {
 			onMouseEnter={toggleHover}
 			onMouseLeave={toggleHover}
 		>
-			<p className='font-Nunito tracking-wider hover:text-yellow-400'>
+			<p className='tracking-wider hover:text-yellow-400'>
 				{props.items.title}
 			</p>
 			<div className={hovered ? 'animate-ping' : ' '}>

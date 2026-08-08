@@ -1,7 +1,8 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { appContext } from '../util/Context';
-import { FaGithub, FaTwitter } from 'react-icons/fa';
+import { appContext } from '../../util/Context';
+import { FaCalendarAlt, FaGithub, FaTwitter } from 'react-icons/fa';
 import { SiGmail } from 'react-icons/si';
+import GhanaTimeZone from './GhanaTimeZone';
 
 const links = [
 	{
@@ -24,6 +25,13 @@ const links = [
 		hint: 'Direct line',
 		icon: SiGmail,
 		accent: 'from-red-400/25 to-amber-500/10',
+	},
+	{
+		href: 'https://calendly.com/jdomeh77',
+		label: 'Book a call',
+		hint: 'Calendly',
+		icon: FaCalendarAlt,
+		accent: 'from-yellow-300/30 to-amber-600/10',
 	},
 ] as const;
 
@@ -55,22 +63,17 @@ const Contact = () => {
 		<section
 			id='contact'
 			ref={contactRef}
-			className={`contact-section relative px-5 pb-28 pt-20 md:pb-36 md:pt-28 ${revealed ? 'contact-section--visible' : ''}`}
+			className={`contact-section relative z-10 px-5 pb-28 pt-20 md:pb-36 md:pt-28 ${revealed ? 'contact-section--visible' : ''}`}
 		>
-			<div className='contact-ambient' aria-hidden />
-			<div className='contact-noise' aria-hidden />
-			<div className='contact-grid-radial' aria-hidden />
-			<div className='contact-glow-orb' aria-hidden />
-
 			<div className='relative z-10 mx-auto max-w-5xl'>
 				<div className='text-center'>
-					<p className='contact-kicker font-mono text-xs font-semibold uppercase tracking-[0.35em] text-yellow-300/90'>
+					<p className='contact-kicker text-xs font-semibold uppercase tracking-[0.35em] text-accent-soft/90'>
 						Connect
 					</p>
-					<h2 className='contact-headline font-Maconda mt-3 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl md:tracking-tighter'>
+					<h2 className='contact-headline mt-3 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl md:tracking-tighter'>
 						<span className='contact-headline-shimmer'>Let&apos;s build</span>
 					</h2>
-					<p className='contact-intro mx-auto mt-4 max-w-xl text-sm text-zinc-400 md:text-base'>
+					<p className='contact-intro mx-auto mt-4 max-w-xl text-sm text-muted md:text-base'>
 						Products, prototypes, shaders, infra — if it ships in a browser or
 						on the edge, I&apos;m interested.
 					</p>
@@ -78,12 +81,12 @@ const Contact = () => {
 
 				<div className='contact-preface mx-auto mt-10 max-w-3xl'>
 					<div className='contact-preface-inner'>
-						<p className='text-left text-xs font-mono uppercase tracking-widest text-zinc-500'>
+						<p className='text-left text-xs uppercase tracking-widest text-muted-strong'>
 							Availability
 						</p>
-						<p className='mt-2 text-left text-base font-medium text-zinc-200 md:text-lg'>
+						<p className='mt-2 text-left text-base font-medium text-fg-secondary md:text-lg'>
 							Taking select collaborations &amp; full-stack builds. Prefer async
-							first — email gets the fastest thread.
+							first — or book a quick call.
 						</p>
 						<div className='mt-4 flex flex-wrap gap-2'>
 							<span className='contact-chip'>TypeScript</span>
@@ -94,7 +97,11 @@ const Contact = () => {
 					</div>
 				</div>
 
-				<div className='mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5'>
+				<div className='contact-preface mx-auto max-w-md'>
+					<GhanaTimeZone />
+				</div>
+
+				<div className='mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5'>
 					{links.map(({ href, label, hint, icon: Icon, accent }, i) => (
 						<a
 							key={label}
@@ -109,11 +116,11 @@ const Contact = () => {
 								className={`contact-link-icon bg-gradient-to-br ${accent}`}
 								aria-hidden
 							>
-								<Icon className='text-2xl text-zinc-100 transition-transform duration-300 group-hover:scale-110' />
+								<Icon className='text-2xl text-fg transition-transform duration-300 group-hover:scale-110' />
 							</div>
 							<div className='min-w-0 flex-1 text-left'>
-								<p className='text-base font-semibold text-zinc-100'>{label}</p>
-								<p className='mt-0.5 text-xs text-zinc-500'>{hint}</p>
+								<p className='text-base font-semibold text-fg'>{label}</p>
+								<p className='mt-0.5 text-xs text-muted-strong'>{hint}</p>
 							</div>
 							<span className='contact-link-chevron' aria-hidden>
 								→

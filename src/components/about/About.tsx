@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { about } from '../data/content/about';
+import { about } from '../../data/content/about';
 import AboutBentoCard from './AboutBentoCard';
 import AboutScrollReveal from './AboutScrollReveal';
-import { appContext } from '../util/Context';
+import { appContext } from '../../util/Context';
 
 const About = () => {
 	const aboutRef = useRef<HTMLDivElement>(null);
@@ -34,11 +34,6 @@ const About = () => {
 			id="about"
 			className={`about-section relative px-5 pb-24 pt-10 md:pb-32 md:pt-14 ${revealed ? 'about-section--visible' : ''}`}
 		>
-			<div
-				className="about-noise about-noise--subtle"
-				aria-hidden
-			/>
-
 			<div className="relative z-10 mx-auto max-w-6xl">
 				<AboutScrollReveal />
 

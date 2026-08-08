@@ -1,8 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-scroll';
-import { nav } from '../data/content/navlinks';
-import { appContext } from '../util/Context';
-import useToggleClassName from '../../hook/useToggle';
+import { nav } from '../../data/content/navlinks';
+import { appContext } from '../../util/Context';
 
 const Navigation = () => {
 	const {
@@ -48,8 +47,8 @@ const Navigation = () => {
 
 	return (
 		<div className=''>
-			<nav className='fixed bottom-[2rem] left-[50%] [transform:translateX(-50%)] flex items-center text-yellow-300 h-20 bg-zinc-700 bg-opacity-30 z-10 rounded-full px-8'>
-				<div className='flex items-center justify-center uppercase font-bold text-sm font-mono gap-x-6 sm:gap-x-10'>
+			<nav className='site-nav fixed bottom-[2rem] left-[50%] z-10 flex h-20 -translate-x-1/2 items-center rounded-full px-8 text-accent-soft'>
+				<div className='flex items-center justify-center uppercase font-bold text-sm gap-x-6 sm:gap-x-10'>
 					{nav.map((item, index) => {
 						return (
 							<div

@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
 import type { Dispatch, FC, ReactNode, SetStateAction } from 'react';
-import { IconProps } from '../components/@types';
+import { IconProps } from '../components/shared/@types';
 import { nav } from '../data/content/navlinks';
 
 interface IAppContext {

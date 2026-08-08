@@ -2,10 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 
 type Phase = 'loading' | 'splash';
 
-const ACCENT = '#facc15';
-const ACCENT_SUBTLE = 'rgba(250,204,21,0.16)';
-const DANGER = '#ef4444';
-const BG = '#09090b';
 const LOAD_DURATION_MS = 2600;
 const EASE_INTRO = 'cubic-bezier(0.16, 1, 0.3, 1)';
 const EASE_EXIT = 'cubic-bezier(0.4, 0, 1, 1)';
@@ -101,7 +97,7 @@ export default function PageIntro({ children }: { children: React.ReactNode }) {
 			<div
 				className="page-intro-overlay fixed inset-0 z-1000 flex flex-col items-center justify-center"
 				style={{
-					backgroundColor: BG,
+					backgroundColor: 'var(--intro-bg)',
 					opacity: overlayExiting ? 0 : 1,
 					transition: `opacity 240ms ${EASE_EXIT}`,
 					pointerEvents: overlayExiting ? 'none' : 'auto',
@@ -130,7 +126,7 @@ export default function PageIntro({ children }: { children: React.ReactNode }) {
 								cy="60"
 								r={ringR}
 								fill="none"
-								stroke={ACCENT_SUBTLE}
+								stroke="var(--accent-dim)"
 								strokeWidth="1.5"
 							/>
 							<circle
@@ -138,7 +134,7 @@ export default function PageIntro({ children }: { children: React.ReactNode }) {
 								cy="60"
 								r={ringR}
 								fill="none"
-								stroke={ACCENT}
+								stroke="var(--accent)"
 								strokeWidth="1.5"
 								strokeLinecap="round"
 								strokeDasharray={ringC}
@@ -151,16 +147,10 @@ export default function PageIntro({ children }: { children: React.ReactNode }) {
 							/>
 						</svg>
 						<div className="relative z-1 flex flex-col items-center gap-1 text-center">
-							<p
-								className="text-[10px] font-medium uppercase tracking-[0.55em] text-yellow-400/80"
-								style={{ fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif' }}
-							>
+							<p className="text-[10px] font-medium uppercase tracking-[0.55em] text-accent-soft/80">
 								Start
 							</p>
-							<p
-								className="flex items-baseline gap-0.5 tabular-nums text-yellow-400"
-								style={{ fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif' }}
-							>
+							<p className="flex items-baseline gap-0.5 tabular-nums text-accent-soft">
 								<span className="text-4xl font-light tracking-tight sm:text-5xl">{pctLabel}</span>
 								<span className="text-lg font-light opacity-90">%</span>
 							</p>
@@ -178,9 +168,9 @@ export default function PageIntro({ children }: { children: React.ReactNode }) {
 						pointerEvents: phase === 'splash' ? 'auto' : 'none',
 					}}
 				>
-					<p className="font-Source-code text-[1.3rem] tracking-wide font-semibold text-yellow-400 sm:text-[1.5rem]">
+					<p className="text-[1.3rem] font-semibold tracking-wide text-accent-soft sm:text-[1.5rem]">
 						<code>
-							{'<'}Domeh.<span style={{ color: DANGER }}>sh</span>
+							{'<'}Domeh.<span className="text-danger">sh</span>
 							{'/>'}
 						</code>
 					</p>
@@ -188,9 +178,8 @@ export default function PageIntro({ children }: { children: React.ReactNode }) {
 						type="button"
 						onClick={handleStart}
 						aria-label="Enter portfolio"
-						className="page-intro-start border border-yellow-400 bg-transparent px-10 py-3 text-[11px] font-medium uppercase tracking-[0.45em] text-yellow-400 outline-none select-none"
+						className="page-intro-start border border-accent bg-transparent px-10 py-3 text-[11px] font-medium uppercase tracking-[0.45em] text-accent outline-none select-none"
 						style={{
-							fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif',
 							borderRadius: '9999px',
 							transition: `transform 140ms cubic-bezier(0.23, 1, 0.32, 1), border-color 140ms ease, color 140ms ease, background-color 200ms ease`,
 						}}
