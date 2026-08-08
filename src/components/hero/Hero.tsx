@@ -42,10 +42,9 @@ const Hero = () => {
 			className="flex flex-col items-center pt-24 px-10 md:flex-row md:items-center md:justify-center md:px-[10rem] md:pt-[16rem] md:pb-[16rem] md:gap-x-40 "
 		>
 			{/* Contains the image */}
-			<div className="rounded-xl max-w-[30rem] md:w-96 bg-gradient-to-r from-yellow-300 to-gray-700 border border-red-300">
+			<div className="rounded-4xl max-w-[30rem] md:w-96 bg-linear-to-tr from-yellow-300 to-gray-700 border border-red-300/10">
 				{/* on top of the of the container */}
-				<div className="rounded-xl w-full md:w-[100%] rotate-[10deg] hover:rotate-0 transition duration-500 bg-yellow-300">
-					{/* <img src={ImageOne} alt="ImageOne" className='h-80 w-full object-contain ' /> */}
+				<div className="rounded-4xl w-full md:w-[100%] rotate-[10deg] hover:rotate-0 transition duration-500 bg-yellow-300">
 					<img
 						src={peep}
 						alt="ImageOne"
@@ -82,7 +81,7 @@ const Hero = () => {
 						offset={50}
 						duration={400}
 					>
-						<button className="btn bg-yellow-300 hover:text-white hover:bg-inherit text-black">
+						<button className="btn bg-yellow-300 hover:text-white hover:bg-inherit text-black dark:text-black">
 							Let's Talk
 						</button>
 					</Link>

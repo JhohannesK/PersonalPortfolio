@@ -25,8 +25,11 @@ const TechStack = () => {
 	const tools = ['Git', 'Docker', 'Vite', 'Figma', 'Postman', 'Linux'];
 
 	return (
-		<section id="stack" className="relative z-10 mt-16 px-5 md:mt-20">
-			<p className="text-center font-Maconda text-5xl font-bold uppercase tracking-wider">
+		<section
+			id="stack"
+			className="relative z-10 mt-16 px-5 md:mt-20"
+		>
+			<p className="text-center text-5xl font-bold uppercase tracking-wider">
 				<span className="contact-headline-shimmer">Tech Stack</span>
 			</p>
 
@@ -49,8 +52,7 @@ const TechStack = () => {
 						{languages.map((language, index) => {
 							return (
 								<li key={language}>
-									<span className="text-zinc-500">{index + 1}.</span>{' '}
-									{language}
+									<span className="text-zinc-500">{index + 1}.</span> {language}
 								</li>
 							);
 						})}

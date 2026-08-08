@@ -40,7 +40,11 @@ html.dark {
 	--project-card-a: oklch(0.21 0.006 285.9 / 0.95);
 	--project-card-b: oklch(0.141 0.005 285.8 / 0.97);
 	--project-grid: oklch(0.442 0.017 285.8 / 0.22);
-	--bento-a: color-mix(in oklch, oklch(0.274 0.006 286) 92%, oklch(0.852 0.172 91.2) 8%);
+	--bento-a: color-mix(
+		in oklch,
+		oklch(0.274 0.006 286) 92%,
+		oklch(0.852 0.172 91.2) 8%
+	);
 	--bento-b: oklch(0.141 0.005 285.8);
 	--terminal-bg: oklch(0.141 0.005 285.8 / 0.92);
 	--terminal-top: oklch(0.21 0.006 285.9 / 0.88);
@@ -52,7 +56,11 @@ html.dark {
 	--footer-top-fg: oklch(0.871 0.006 286.3);
 	--clock-dial-hi: oklch(0.274 0.006 286);
 	--clock-dial-lo: oklch(0.141 0.005 285.8);
-	--clock-ring: color-mix(in oklch, oklch(0.852 0.172 91.2) 32%, oklch(0.37 0.014 285.8));
+	--clock-ring: color-mix(
+		in oklch,
+		oklch(0.852 0.172 91.2) 32%,
+		oklch(0.37 0.014 285.8)
+	);
 	--clock-inner-ring: oklch(0.37 0.014 285.8 / 0.7);
 	--clock-tick: oklch(0.552 0.016 285.9);
 	--clock-tick-strong: oklch(0.871 0.006 286.3);
@@ -110,7 +118,11 @@ html.light {
 	--footer-top-fg: oklch(0.37 0.014 285.8);
 	--clock-dial-hi: oklch(0.985 0 0);
 	--clock-dial-lo: oklch(0.92 0.004 286.3);
-	--clock-ring: color-mix(in oklch, oklch(0.795 0.162 86) 45%, oklch(0.705 0.015 286.1));
+	--clock-ring: color-mix(
+		in oklch,
+		oklch(0.795 0.162 86) 45%,
+		oklch(0.705 0.015 286.1)
+	);
 	--clock-inner-ring: oklch(0.705 0.015 286.1 / 0.55);
 	--clock-tick: oklch(0.705 0.015 286.1);
 	--clock-tick-strong: oklch(0.37 0.014 285.8);
@@ -209,7 +221,7 @@ body {
 }
 
 .btn {
-	@apply border p-3 rounded-md text-sm transition duration-500;
+	@apply border p-3 px-5 rounded-3xl text-sm transition duration-500;
 	border-color: var(--border);
 	color: var(--fg);
 }
@@ -267,7 +279,8 @@ body {
 	align-items: center;
 	justify-content: space-between;
 	padding: 0.75rem 1rem;
-	border-bottom: 1px solid color-mix(in srgb, var(--terminal-border) 80%, transparent);
+	border-bottom: 1px solid
+		color-mix(in srgb, var(--terminal-border) 80%, transparent);
 	background: var(--terminal-top);
 }
 

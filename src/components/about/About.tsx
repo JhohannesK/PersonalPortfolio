@@ -36,24 +36,6 @@ const About = () => {
 		>
 			<div className="relative z-10 mx-auto max-w-6xl">
 				<AboutScrollReveal />
-
-				{/* <div className='about-bento-below mt-4 grid grid-cols-1 gap-5 md:mt-8 md:grid-cols-12 md:gap-6'>
-					<AboutBentoCard
-						item={about[0]}
-						index={0}
-						className='md:col-span-7'
-					/>
-					<AboutBentoCard
-						item={about[1]}
-						index={1}
-						className='md:col-span-5'
-					/>
-					<AboutBentoCard
-						item={about[2]}
-						index={2}
-						className='md:col-span-12 lg:col-span-8 lg:col-start-3'
-					/>
-				</div> */}
 			</div>
 		</div>
 	);
