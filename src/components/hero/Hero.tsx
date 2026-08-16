@@ -4,6 +4,7 @@ import peep from '../../assets/images/Open Peeps Flat Assets/Flat Assets/Templat
 import { Link } from 'react-scroll';
 import { appContext } from '../../util/Context';
 import { IconNameType } from '../shared/@types';
+import { Button } from '../ui/button';
 
 const Hero = () => {
 	const heroRef = useRef<HTMLDivElement>(null);
@@ -63,15 +64,11 @@ const Hero = () => {
 				<div className="flex items-center justify-center gap-x-4 pt-5">
 					{/* TODO: Add download link
 					 */}
-					<a
-						href="#"
-						download
-					>
-						<button className="btn hover:bg-yellow-300 hover:text-black animate-float ">
-							{' '}
-							Download CV
-						</button>
-					</a>
+
+					<Button className=" bg-yellow-300 hover:text-black animate-float ">
+						{' '}
+						Download CV
+					</Button>
 
 					<Link
 						activeClass="active"
@@ -81,9 +78,7 @@ const Hero = () => {
 						offset={50}
 						duration={400}
 					>
-						<button className="btn bg-yellow-300 hover:text-white hover:bg-inherit text-black dark:text-black">
-							Let's Talk
-						</button>
+						<Button className=" bg-yellow-300">Let's Talk</Button>
 					</Link>
 				</div>
 			</div>
