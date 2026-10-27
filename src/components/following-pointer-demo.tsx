@@ -5,19 +5,11 @@ export default function FollowingPointerDemo() {
     <div className="mx-auto w-80">
       <FollowerPointerCard
         title={
-          <TitleComponent
-            title={blogContent.author}
-            avatar={blogContent.authorAvatar}
-          />
+          <TitleComponent title={blogContent.author} />
         }
       >
         <div className="group relative h-full overflow-hidden rounded-2xl border border-zinc-100 bg-white transition duration-200 hover:shadow-xl">
           <div className="relative aspect-[16/10] w-full overflow-hidden rounded-tl-lg rounded-tr-lg bg-gray-100">
-            <img
-              src={blogContent.image}
-              alt="thumbnail"
-              className="h-full transform object-cover transition duration-200 group-hover:scale-95 group-hover:rounded-2xl"
-            />
           </div>
           <div className="p-4">
             <h2 className="my-4 text-lg font-bold text-zinc-700">
@@ -46,25 +38,14 @@ const blogContent = {
   title: "Amazing Tailwindcss Grid Layout Examples",
   description:
     "Grids are cool, but Tailwindcss grids are cooler. In this article, we will learn how to create amazing Grid layouts with Tailwindcs grid and React.",
-  image: "/demo/thumbnail.png",
-  authorAvatar: "/manu.png",
 };
 
 const TitleComponent = ({
   title,
-  avatar,
 }: {
   title: string;
-  avatar: string;
 }) => (
   <div className="flex items-center space-x-2">
-    <img
-      src={avatar}
-      height="20"
-      width="20"
-      alt="thumbnail"
-      className="rounded-full border-2 border-white"
-    />
     <p>{title}</p>
   </div>
 );

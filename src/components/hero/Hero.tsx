@@ -24,6 +24,7 @@ const greetings = [
 	{ word: '안녕하세요', lang: 'ko' },
 	{ word: '你好', lang: 'zh' },
 	{ word: 'नमस्ते', lang: 'hi' },
+	{ word: 'Привет', lang: 'ru' },
 	{ word: 'Mo-hee', lang: 'dangbe' },
 	{ word: 'Alekee', lang: 'ewe' },
 ];
