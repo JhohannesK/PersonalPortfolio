@@ -5,6 +5,8 @@ import { Link } from 'react-scroll';
 import { appContext } from '../../util/Context';
 import { IconNameType } from '../shared/@types';
 import { Button } from '../ui/button';
+import { EncryptedText } from '../ui/encrypted-text';
+import { usePageIntroEntered } from '../layout/PageIntro';
 
 const greetings = [
 	{ word: 'Hello', lang: 'en' },
@@ -28,6 +30,7 @@ const Hero = () => {
 	const heroRef = useRef<HTMLDivElement>(null);
 
 	const { setHeroState } = useContext(appContext);
+	const introEntered = usePageIntroEntered();
 
 	const [isIntersecting, setIsIntersecting] = useState<IconNameType>({
 		iconIndex: null,
@@ -146,9 +149,15 @@ const Hero = () => {
 						))}
 					</span>
 				</p>
-				<p className="text-5xl lg:text-6xl text-yellow-300 animate-pulse font-bold">
-					Domeh John Kelvin
-				</p>
+				<EncryptedText
+					key={introEntered ? 'entered' : 'intro'}
+					text="Domeh John Kelvin"
+					className="text-5xl lg:text-6xl font-bold"
+					encryptedClassName="text-yellow-600/35 dark:text-yellow-300/35"
+					revealedClassName="text-yellow-600 dark:text-yellow-300"
+					revealDelayMs={50}
+					stableLayout
+				/>
 				<p className="text-xs sm:text-sm md:text-lg text-gray-400 capitalize">
 					Passionately Curious Software Engineer
 				</p>
