@@ -16,11 +16,13 @@ import {
 } from 'react-icons/fi';
 import { projects, type ProjectItem } from '../../data/content/projects';
 import { appContext } from '../../util/Context';
+import { ParallaxHeroImages } from '../ui/parallax-hero-images';
 
 type SegmentId = 'all' | 'web' | 'full-stack' | 'mobile';
 
 type ProjectCardStyle = CSSProperties & {
 	'--project-accent': string;
+	'--i': number;
 };
 
 type SegmentStyle = CSSProperties & {
@@ -43,13 +45,6 @@ const SEGMENT_ICONS = {
 	'full-stack': FiLayers,
 	mobile: FiSmartphone,
 } satisfies Record<SegmentId, typeof FiGrid>;
-
-const STATUS_TONES: Record<string, string> = {
-	Shipped: '#86efac',
-	Live: '#5eead4',
-	Active: '#7dd3fc',
-	'In development': '#fbbf24',
-};
 
 function isFullStack(project: ProjectItem) {
 	return project.fullStack === true;
@@ -87,6 +82,10 @@ const segments = SEGMENT_ORDER.map((id) => ({
 	count: segmentCounts[id],
 })).filter((segment) => segment.count > 0);
 
+const parallaxImages = projects
+	.map((project) => project.preview?.src)
+	.filter((src): src is string => Boolean(src));
+
 function initials(title: string) {
 	return title
 		.split(/\s+/)
@@ -97,29 +96,63 @@ function initials(title: string) {
 }
 
 const Projects = () => {
-	const projectsRef = useRef<HTMLDivElement>(null);
+	const projectsRef = useRef<HTMLElement>(null);
 	const segmentRefs = useRef<Array<HTMLButtonElement | null>>([]);
 	const { setProjectsState } = useContext(appContext);
 	const [activeSegment, setActiveSegment] = useState<SegmentId>('all');
+	const [revealed, setRevealed] = useState(false);
 
 	useEffect(() => {
-		const observer = new IntersectionObserver(
+		const reduce =
+			typeof window !== 'undefined' &&
+			window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		if (reduce) setRevealed(true);
+
+		const revealObserver = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) setRevealed(true);
+			},
+			{ threshold: 0.15, rootMargin: '0px 0px -8% 0px' },
+		);
+
+		// Keep the floating nav's active-section timing independent of the
+		// reveal threshold above.
+		const stateObserver = new IntersectionObserver(
 			([entry]) => {
 				setProjectsState(entry.isIntersecting);
 			},
-			{
-				threshold: 0.3,
-			},
+			{ threshold: 0.3 },
 		);
 
 		if (projectsRef.current) {
-			observer.observe(projectsRef.current);
+			revealObserver.observe(projectsRef.current);
+			stateObserver.observe(projectsRef.current);
 		}
 
 		return () => {
-			observer.disconnect();
+			revealObserver.disconnect();
+			stateObserver.disconnect();
 		};
 	}, []);
+
+	function selectSegment(segment: SegmentId) {
+		if (segment === activeSegment) {
+			return;
+		}
+
+		setActiveSegment(segment);
+
+		const section = projectsRef.current;
+		if (section && section.getBoundingClientRect().top < 0) {
+			const reduce = window.matchMedia(
+				'(prefers-reduced-motion: reduce)',
+			).matches;
+			section.scrollIntoView({
+				behavior: reduce ? 'auto' : 'smooth',
+				block: 'start',
+			});
+		}
+	}
 
 	const filteredProjects = projects.filter((project) =>
 		matchesSegment(project, activeSegment),
@@ -184,18 +217,32 @@ const Projects = () => {
 		<section
 			id="projects"
 			ref={projectsRef}
-			className="relative z-10 mt-16 flex flex-col items-center px-4 pb-2 sm:px-5 md:mt-24 md:px-8 lg:px-10"
+			className={`project-section relative z-10 mt-16 flex flex-col items-center px-4 pb-2 sm:px-5 md:mt-24 md:px-8 lg:px-10${
+				revealed ? ' project-section--visible' : ''
+			}`}
+			onFocus={() => setRevealed(true)}
 		>
-			<header className="flex w-full flex-col items-center text-center">
-				<h2 className="text-4xl font-bold uppercase tracking-[0.11em] sm:text-5xl">
-					<span className="contact-headline-shimmer">Projects</span>
-				</h2>
-				<p className="max-w-[56ch] pt-4 text-[15px] leading-relaxed text-muted">
-					In code and cloud, my visions cast, from playful sites to
-					systems vast. Interactive tales and tools refined, art and
-					logic intertwined.
-				</p>
-			</header>
+			<div className="project-parallax relative flex min-h-[390px] w-full flex-col items-center justify-center overflow-hidden py-8 sm:min-h-[480px] sm:py-12">
+				<div
+					className="pointer-events-none absolute inset-0"
+					aria-hidden="true"
+				>
+					<ParallaxHeroImages
+						images={parallaxImages}
+						className="opacity-45 [mask-image:radial-gradient(ellipse_at_center,transparent_52%,black_94%)] dark:opacity-40 xl:opacity-55 xl:[mask-image:radial-gradient(ellipse_at_center,transparent_18%,black_62%)] dark:xl:opacity-45"
+					/>
+				</div>
+				<header className="relative z-10 flex w-full flex-col items-center text-center">
+					<h2 className="project-head text-4xl font-bold uppercase tracking-[0.11em] sm:text-5xl">
+						<span className="contact-headline-shimmer">Projects</span>
+					</h2>
+					<p className="project-intro max-w-[56ch] pt-4 text-[15px] leading-relaxed text-muted">
+						In code and cloud, my visions cast, from playful sites
+						to systems vast. Interactive tales and tools refined,
+						art and logic intertwined.
+					</p>
+				</header>
+			</div>
 
 			<div className="project-seg-wrap">
 				<div
@@ -221,7 +268,7 @@ const Projects = () => {
 								type="button"
 								className="project-seg-button"
 								aria-pressed={activeSegment === segment.id}
-								onClick={() => setActiveSegment(segment.id)}
+								onClick={() => selectSegment(segment.id)}
 							>
 								<SegmentIcon aria-hidden="true" />
 								{segment.label}
@@ -253,7 +300,7 @@ const Projects = () => {
 					key={activeSegment}
 					className="project-gallery"
 				>
-					{filteredProjects.map((project) => {
+					{filteredProjects.map((project, index) => {
 						const primaryHref =
 							project.liveUrl ?? project.repoLinks?.[0]?.href;
 						const primaryRepo = project.liveUrl
@@ -264,6 +311,7 @@ const Projects = () => {
 							.slice(0, 1);
 						const cardStyle: ProjectCardStyle = {
 							'--project-accent': project.accent,
+							'--i': Math.min(index, 5),
 						};
 
 						return (
@@ -356,12 +404,7 @@ const Projects = () => {
 									<p className="project-meta">
 										<span
 											className="project-status-dot"
-											style={{
-												background:
-													STATUS_TONES[
-														project.status
-													] ?? 'var(--muted)',
-											}}
+											data-status={project.status}
 											aria-hidden="true"
 										/>
 										<span>{project.status}</span>
