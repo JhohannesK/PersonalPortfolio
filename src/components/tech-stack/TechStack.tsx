@@ -1,4 +1,17 @@
 import React from 'react';
+import { FollowerPointerCard } from '../ui/following-pointer';
+
+function TerminalPointerTitle() {
+	return (
+		<span className="flex items-center gap-2 font-mono">
+			<span
+				className="h-1.5 w-1.5 rounded-full bg-emerald-400"
+				aria-hidden="true"
+			/>
+			kelvin@portfolio
+		</span>
+	);
+}
 
 const TechStack = () => {
 	const languages = [
@@ -33,8 +46,10 @@ const TechStack = () => {
 				<span className="contact-headline-shimmer">Tech Stack</span>
 			</p>
 
-			<div className="terminal-window mx-auto mt-8 max-w-5xl font-Source-code">
-				<div className="terminal-top">
+			<div className="mx-auto mt-8 max-w-5xl">
+				<FollowerPointerCard title={<TerminalPointerTitle />}>
+					<div className="terminal-window font-Source-code">
+						<div className="terminal-top">
 					<div className="terminal-lights">
 						<span className="terminal-light bg-red-500" />
 						<span className="terminal-light bg-yellow-400" />
@@ -91,7 +106,9 @@ const TechStack = () => {
 						<span className="terminal-prompt">kelvin@portfolio:~$</span>
 						<span className="terminal-cursor">_</span>
 					</div>
+					</div>
 				</div>
+				</FollowerPointerCard>
 			</div>
 		</section>
 	);
