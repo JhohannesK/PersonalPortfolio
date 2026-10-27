@@ -20,11 +20,11 @@ function readStoredTheme(): Theme | null {
 	return null;
 }
 
-/** Prefer stored theme; else dark (product default). */
+/** Prefer stored theme; else light (product default). */
 export function resolveTheme(): Theme {
 	const stored = readStoredTheme();
 	if (stored) return stored;
-	return 'dark';
+	return 'light';
 }
 
 export function applyTheme(theme: Theme) {
@@ -41,7 +41,7 @@ type ThemeContextValue = {
 };
 
 const ThemeContext = createContext<ThemeContextValue>({
-	theme: 'dark',
+	theme: 'light',
 	setTheme: () => {},
 	toggleTheme: () => {},
 });

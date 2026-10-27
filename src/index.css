@@ -9,10 +9,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
-  Semantic OKLCH tokens (runtime). Dark is default on :root / html.dark.
+  Semantic OKLCH tokens (runtime). Light is default on :root / html.light.
   @theme inline maps them into Tailwind utilities: bg-bg, text-fg, text-accent, …
 */
-:root,
 html.dark {
 	color-scheme: dark;
 
@@ -76,6 +75,7 @@ html.dark {
 }
 
 /* Light: white / black + yellow touches */
+:root,
 html.light {
 	color-scheme: light;
 
