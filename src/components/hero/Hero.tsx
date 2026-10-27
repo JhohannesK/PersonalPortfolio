@@ -114,7 +114,7 @@ const Hero = () => {
 		<div
 			id="hero"
 			ref={heroRef}
-			className="flex flex-col items-center pt-24 px-10 md:flex-row md:items-center md:justify-center md:px-[10rem] md:pt-[16rem] md:pb-[16rem] md:gap-x-40 "
+			className="flex flex-col items-center pt-24 px-10 md:flex-row md:items-center md:justify-center md:px-12 md:pt-[16rem] md:pb-[16rem] md:gap-x-40 "
 		>
 			{/* Contains the image */}
 			<div className="rounded-4xl max-w-[30rem] md:w-96 bg-linear-to-tr from-yellow-300 to-gray-700 border border-red-300/10">
