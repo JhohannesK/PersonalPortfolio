@@ -12,16 +12,20 @@ const greetings = [
 	{ word: 'Hello', lang: 'en' },
 	{ word: 'Bonjour', lang: 'fr' },
 	{ word: 'Hola', lang: 'es' },
+	{ word: 'Oobakɛ', lang: 'ga' },
 	{ word: 'Olá', lang: 'pt' },
 	{ word: 'Ciao', lang: 'it' },
 	{ word: 'Hallo', lang: 'de' },
 	{ word: 'Merhaba', lang: 'tr' },
 	{ word: 'Habari', lang: 'sw' },
 	{ word: 'Sawubona', lang: 'zu' },
+	{ word: 'Akwaaba', lang: 'twi' },
 	{ word: 'こんにちは', lang: 'ja' },
 	{ word: '안녕하세요', lang: 'ko' },
 	{ word: '你好', lang: 'zh' },
 	{ word: 'नमस्ते', lang: 'hi' },
+	{ word: 'Mo-hee', lang: 'dangbe' },
+	{ word: 'Alekee', lang: 'ewe' },
 ];
 
 const GREETING_INTERVAL_MS = 2600;
@@ -99,9 +103,8 @@ const Hero = () => {
 				setHeroState(entries.isIntersecting);
 			},
 			{
-				// root: null,
-				// rootMargin: '-100px',
-				threshold: 1.0,
+				threshold: 0.1,
+				rootMargin: '0px 0px -10% 0px',
 			},
 		);
 
@@ -120,7 +123,7 @@ const Hero = () => {
 			className="flex flex-col items-center pt-24 px-10 md:flex-row md:items-center md:justify-center md:px-12 md:pt-[16rem] md:pb-[16rem] md:gap-x-40 "
 		>
 			{/* Contains the image */}
-			<div className="rounded-4xl max-w-[30rem] md:w-96 bg-linear-to-tr from-yellow-300 to-gray-700 border border-red-300/10">
+			<div className="rounded-4xl max-w-[30rem] md:w-96 bg-gradient-to-tr from-yellow-300 to-gray-700 border border-red-300/10">
 				{/* on top of the of the container */}
 				<div className="rounded-4xl w-full md:w-[100%] rotate-[10deg] hover:rotate-0 transition duration-500 bg-yellow-300">
 					<img
@@ -133,10 +136,16 @@ const Hero = () => {
 			<div className="flex flex-col items-center justify-center text-center  gap-y-3 pt-10 sm:pt-5">
 				<p className="hero-greeting text-3xl sm:text-4xl">
 					<span className="sr-only">Hello, I am</span>
-					<span className="hero-greeting-sizer" aria-hidden="true">
+					<span
+						className="hero-greeting-sizer"
+						aria-hidden="true"
+					>
 						Hello 👋🏾, I am
 					</span>
-					<span className="hero-greeting-stack" aria-hidden="true">
+					<span
+						className="hero-greeting-stack"
+						aria-hidden="true"
+					>
 						{greetings.map((greeting, index) => (
 							<span
 								key={greeting.lang}

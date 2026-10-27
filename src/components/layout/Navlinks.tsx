@@ -46,9 +46,9 @@ const Navigation = () => {
 	}
 
 	return (
-		<div className=''>
-			<nav className='site-nav fixed bottom-[2rem] left-[50%] z-10 flex h-20 -translate-x-1/2 items-center rounded-full px-8 text-accent-soft'>
-				<div className='flex items-center justify-center uppercase font-bold text-sm gap-x-10'>
+		<div className="">
+			<nav className="site-nav fixed bottom-[2rem] left-[50%] z-10 flex h-14 -translate-x-1/2 items-center rounded-full px-8 text-accent-soft">
+				<div className="flex items-center justify-center uppercase font-bold text-sm gap-x-10">
 					{nav.map((item, index) => {
 						const isActive =
 							iconState.objects[index].id === iconState.activeObject;
@@ -60,7 +60,7 @@ const Navigation = () => {
 								data-id={index}
 							>
 								<Link
-									activeClass='active'
+									activeClass="active"
 									to={item.to}
 									href={`#${item.to}`}
 									spy={true}
@@ -69,7 +69,7 @@ const Navigation = () => {
 									duration={700}
 									aria-label={item.name}
 									aria-current={isActive ? 'location' : undefined}
-									className='cursor-pointer flex items-center justify-center'
+									className="cursor-pointer flex items-center justify-center"
 								>
 									<div
 										onClick={() => {
@@ -80,11 +80,17 @@ const Navigation = () => {
 										{item.icon}
 									</div>
 								</Link>
-								<span className={toggleActiveName(index)} aria-hidden='true'>
+								<span
+									className={toggleActiveName(index)}
+									aria-hidden="true"
+								>
 									{item.name}{' '}
 								</span>
 								{!isActive && (
-									<span className='nav-hover-label' aria-hidden='true'>
+									<span
+										className="nav-hover-label"
+										aria-hidden="true"
+									>
 										{item.name}
 									</span>
 								)}

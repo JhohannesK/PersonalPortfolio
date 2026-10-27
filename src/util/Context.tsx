@@ -35,7 +35,7 @@ const AppProvider: FC<{ children: ReactNode }> = ({ children }) => {
 	const [projectsState, setProjectsState] = useState(false);
 	const [contactState, setContactState] = useState(false);
 	const [iconState, setIconState] = useState<IconProps>({
-		activeObject: null,
+		activeObject: 0,
 		objects: nav,
 	});
 

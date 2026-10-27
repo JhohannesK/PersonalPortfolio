@@ -13,6 +13,26 @@ function TerminalPointerTitle() {
 	);
 }
 
+const DOC_LINKS: Record<string, string> = {
+	// Languages
+	Python: 'https://docs.python.org/3/',
+	JavaScript: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+	TypeScript: 'https://www.typescriptlang.org/docs/',
+	HTML5: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
+	CSS3: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
+	Java: 'https://docs.oracle.com/en/java/',
+	Golang: 'https://go.dev/doc/',
+	'C#': 'https://learn.microsoft.com/en-us/dotnet/csharp/',
+	// Frameworks
+	React: 'https://react.dev/',
+	'Next.js': 'https://nextjs.org/docs',
+	Django: 'https://docs.djangoproject.com/en/stable/',
+	Prisma: 'https://www.prisma.io/docs',
+	'Tailwind CSS': 'https://tailwindcss.com/docs',
+	'.NET': 'https://learn.microsoft.com/en-us/dotnet/',
+	Express: 'https://expressjs.com/',
+};
+
 const TechStack = () => {
 	const languages = [
 		'Python',
@@ -36,6 +56,22 @@ const TechStack = () => {
 	];
 
 	const tools = ['Git', 'Docker', 'Vite', 'Figma', 'Postman', 'Linux'];
+
+	const SkillLink = ({ name }: { name: string }) => {
+		const href = DOC_LINKS[name];
+		return href ? (
+			<a
+				href={href}
+				target="_blank"
+				rel="noopener noreferrer"
+				className="text-emerald-400 hover:text-emerald-300 hover:underline transition-colors"
+			>
+				{name}
+			</a>
+		) : (
+			<span className="text-zinc-200">{name}</span>
+		);
+	};
 
 	return (
 		<section
@@ -67,7 +103,8 @@ const TechStack = () => {
 						{languages.map((language, index) => {
 							return (
 								<li key={language}>
-									<span className="text-zinc-500">{index + 1}.</span> {language}
+									<span className="text-zinc-500">{index + 1}.</span>{' '}
+									<SkillLink name={language} />
 								</li>
 							);
 						})}
@@ -82,7 +119,7 @@ const TechStack = () => {
 							return (
 								<li key={framework}>
 									<span className="text-zinc-500">{index + 1}.</span>{' '}
-									{framework}
+									<SkillLink name={framework} />
 								</li>
 							);
 						})}
