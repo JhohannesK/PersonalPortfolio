@@ -236,6 +236,108 @@ body {
 	border: 1px solid color-mix(in oklch, var(--border) 70%, transparent);
 }
 
+/* —— Floating navigation hover labels —— */
+.nav-hover-label {
+	position: absolute;
+	left: 50%;
+	bottom: calc(100% + 40px);
+	z-index: 2;
+	padding: 0.45rem 0.8rem 0.4rem;
+	border: 1px solid color-mix(in oklch, var(--border) 70%, transparent);
+	border-radius: 999px;
+	background: var(--nav-bg);
+	-webkit-backdrop-filter: blur(12px);
+	backdrop-filter: blur(12px);
+	box-shadow: 0 10px 30px -18px var(--shadow-deep);
+	color: var(--accent-soft);
+	font-size: 0.625rem;
+	font-weight: 600;
+	line-height: 1;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	white-space: nowrap;
+	opacity: 0;
+	pointer-events: none;
+	transform: translate(-50%, 6px) scale(0.96);
+	transition:
+		opacity 160ms ease,
+		transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.nav-item:hover .nav-hover-label {
+		opacity: 1;
+		transform: translate(-50%, 0) scale(1);
+	}
+}
+
+.nav-item:focus-within .nav-hover-label {
+	opacity: 1;
+	transform: translate(-50%, 0) scale(1);
+}
+
+.nav-item a:focus-visible {
+	border-radius: 0.35rem;
+	outline: 1px solid var(--accent-soft);
+	outline-offset: 5px;
+}
+
+.nav-item--active a:focus-visible {
+	outline: none;
+}
+
+.nav-item--active:has(a:focus-visible) .text--active {
+	text-decoration: underline;
+	text-decoration-color: var(--fg);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.42em;
+}
+
+@media (hover: none) and (pointer: coarse) {
+	.nav-hover-label {
+		display: none;
+	}
+}
+
+/* —— Hero greeting rotator —— */
+.hero-greeting {
+	position: relative;
+	line-height: 1.15;
+}
+
+.hero-greeting-sizer {
+	display: block;
+	white-space: nowrap;
+	visibility: hidden;
+}
+
+.hero-greeting-stack {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	align-content: center;
+	justify-content: center;
+}
+
+.hero-greeting-line {
+	grid-area: 1 / 1;
+	text-align: center;
+	white-space: nowrap;
+	opacity: 0;
+	transform: translateY(0.32em);
+	filter: blur(6px);
+	transition:
+		opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+		transform 620ms cubic-bezier(0.22, 1, 0.36, 1),
+		filter 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-greeting-line[data-state='active'] {
+	opacity: 1;
+	transform: translateY(0);
+	filter: blur(0);
+}
+
 .theme-fg {
 	color: var(--fg);
 }
@@ -282,7 +384,21 @@ body {
 }
 
 .text {
-	@apply absolute top-3 cursor-default tracking-wider transition duration-700;
+	@apply absolute cursor-default tracking-wider;
+	top: 50%;
+	left: 50%;
+	white-space: nowrap;
+	pointer-events: none;
+	opacity: 0;
+	translate: -50% calc(-50% + 5px);
+	transition:
+		opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+		translate 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.text.text--active {
+	opacity: 1;
+	translate: -50% -50%;
 }
 
 .contact-icon {
@@ -1792,6 +1908,13 @@ html.light .project-seg-button[aria-pressed='true']:hover {
 
 	.contact-link-card:hover {
 		transform: none !important;
+	}
+
+	.hero-greeting-line,
+	.nav-hover-label,
+	.text,
+	.icon {
+		transition: none !important;
 	}
 
 	.site-footer-nav-link:active,

@@ -6,6 +6,24 @@ import { appContext } from '../../util/Context';
 import { IconNameType } from '../shared/@types';
 import { Button } from '../ui/button';
 
+const greetings = [
+	{ word: 'Hello', lang: 'en' },
+	{ word: 'Bonjour', lang: 'fr' },
+	{ word: 'Hola', lang: 'es' },
+	{ word: 'Olá', lang: 'pt' },
+	{ word: 'Ciao', lang: 'it' },
+	{ word: 'Hallo', lang: 'de' },
+	{ word: 'Merhaba', lang: 'tr' },
+	{ word: 'Habari', lang: 'sw' },
+	{ word: 'Sawubona', lang: 'zu' },
+	{ word: 'こんにちは', lang: 'ja' },
+	{ word: '안녕하세요', lang: 'ko' },
+	{ word: '你好', lang: 'zh' },
+	{ word: 'नमस्ते', lang: 'hi' },
+];
+
+const GREETING_INTERVAL_MS = 2600;
+
 const Hero = () => {
 	const heroRef = useRef<HTMLDivElement>(null);
 
@@ -15,6 +33,62 @@ const Hero = () => {
 		iconIndex: null,
 		isIntersecting: false,
 	});
+
+	const [greetingIndex, setGreetingIndex] = useState(0);
+	const [greetingMotion, setGreetingMotion] = useState(
+		() =>
+			typeof window === 'undefined' ||
+			!window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+	);
+
+	useEffect(() => {
+		const query = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const syncPreference = () => setGreetingMotion(!query.matches);
+
+		query.addEventListener('change', syncPreference);
+		return () => query.removeEventListener('change', syncPreference);
+	}, []);
+
+	useEffect(() => {
+		if (!greetingMotion) {
+			setGreetingIndex(0);
+			return;
+		}
+
+		let interval: number | undefined;
+
+		const stop = () => {
+			if (interval !== undefined) {
+				window.clearInterval(interval);
+				interval = undefined;
+			}
+		};
+
+		const start = () => {
+			stop();
+			interval = window.setInterval(() => {
+				setGreetingIndex((index) => (index + 1) % greetings.length);
+			}, GREETING_INTERVAL_MS);
+		};
+
+		const handleVisibility = () => {
+			if (document.hidden) {
+				stop();
+			} else {
+				start();
+			}
+		};
+
+		if (!document.hidden) {
+			start();
+		}
+		document.addEventListener('visibilitychange', handleVisibility);
+
+		return () => {
+			stop();
+			document.removeEventListener('visibilitychange', handleVisibility);
+		};
+	}, [greetingMotion]);
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
@@ -54,7 +128,24 @@ const Hero = () => {
 				</div>
 			</div>
 			<div className="flex flex-col items-center justify-center text-center  gap-y-3 pt-10 sm:pt-5">
-				<p className="text-4xl">Hello 👋🏾, I am</p>
+				<p className="hero-greeting text-3xl sm:text-4xl">
+					<span className="sr-only">Hello, I am</span>
+					<span className="hero-greeting-sizer" aria-hidden="true">
+						Hello 👋🏾, I am
+					</span>
+					<span className="hero-greeting-stack" aria-hidden="true">
+						{greetings.map((greeting, index) => (
+							<span
+								key={greeting.lang}
+								lang={greeting.lang}
+								data-state={index === greetingIndex ? 'active' : 'idle'}
+								className="hero-greeting-line"
+							>
+								{greeting.word} 👋🏾, I am
+							</span>
+						))}
+					</span>
+				</p>
 				<p className="text-5xl lg:text-6xl text-yellow-300 animate-pulse font-bold">
 					Domeh John Kelvin
 				</p>
