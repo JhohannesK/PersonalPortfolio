@@ -1,13 +1,11 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { about } from '../../data/content/about';
 import AboutBentoCard from './AboutBentoCard';
 import AboutScrollReveal from './AboutScrollReveal';
-import { appContext } from '../../util/Context';
 
 const About = () => {
 	const aboutRef = useRef<HTMLDivElement>(null);
 	const [revealed, setRevealed] = useState(false);
-	const { setAboutState } = useContext(appContext);
 
 	useEffect(() => {
 		const reduce =
@@ -17,7 +15,6 @@ const About = () => {
 
 		const observer = new IntersectionObserver(
 			([entry]) => {
-				setAboutState(entry.isIntersecting);
 				if (entry.isIntersecting) setRevealed(true);
 			},
 			{ threshold: 0.12, rootMargin: '0px 0px -8% 0px' },

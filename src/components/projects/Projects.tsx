@@ -1,5 +1,4 @@
 import {
-	useContext,
 	useEffect,
 	useRef,
 	useState,
@@ -15,7 +14,6 @@ import {
 	FiSmartphone,
 } from 'react-icons/fi';
 import { projects, type ProjectItem } from '../../data/content/projects';
-import { appContext } from '../../util/Context';
 import { ParallaxHeroImages } from '../ui/parallax-hero-images';
 
 type SegmentId = 'all' | 'web' | 'full-stack' | 'mobile';
@@ -98,7 +96,6 @@ function initials(title: string) {
 const Projects = () => {
 	const projectsRef = useRef<HTMLElement>(null);
 	const segmentRefs = useRef<Array<HTMLButtonElement | null>>([]);
-	const { setProjectsState } = useContext(appContext);
 	const [activeSegment, setActiveSegment] = useState<SegmentId>('all');
 	const [revealed, setRevealed] = useState(false);
 
@@ -115,23 +112,12 @@ const Projects = () => {
 			{ threshold: 0.15, rootMargin: '0px 0px -8% 0px' },
 		);
 
-		// Keep the floating nav's active-section timing independent of the
-		// reveal threshold above.
-		const stateObserver = new IntersectionObserver(
-			([entry]) => {
-				setProjectsState(entry.isIntersecting);
-			},
-			{ threshold: 0.3 },
-		);
-
 		if (projectsRef.current) {
 			revealObserver.observe(projectsRef.current);
-			stateObserver.observe(projectsRef.current);
 		}
 
 		return () => {
 			revealObserver.disconnect();
-			stateObserver.disconnect();
 		};
 	}, []);
 

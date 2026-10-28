@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ImageOne from '../../images/Mask Group 1.png';
 import peep from '../../assets/images/Open Peeps Flat Assets/Flat Assets/Templates/Bust/peep-8.svg';
 import { Link } from 'react-scroll';
-import { appContext } from '../../util/Context';
 import { IconNameType } from '../shared/@types';
 import { Button } from '../ui/button';
 import { EncryptedText } from '../ui/encrypted-text';
@@ -34,7 +33,6 @@ const GREETING_INTERVAL_MS = 2600;
 const Hero = () => {
 	const heroRef = useRef<HTMLDivElement>(null);
 
-	const { setHeroState } = useContext(appContext);
 	const introEntered = usePageIntroEntered();
 
 	const [isIntersecting, setIsIntersecting] = useState<IconNameType>({
@@ -98,30 +96,11 @@ const Hero = () => {
 		};
 	}, [greetingMotion]);
 
-	useEffect(() => {
-		const observer = new IntersectionObserver(
-			([entries]) => {
-				setHeroState(entries.isIntersecting);
-			},
-			{
-				threshold: 0.1,
-				rootMargin: '0px 0px -10% 0px',
-			},
-		);
-
-		if (heroRef.current) {
-			observer.observe(heroRef.current);
-		}
-		return () => {
-			observer.disconnect();
-		};
-	}, []);
-
 	return (
 		<div
 			id="hero"
 			ref={heroRef}
-			className="flex flex-col items-center pt-24 px-10 md:flex-row md:items-center md:justify-center md:px-12 md:pt-[16rem] md:pb-[16rem] md:gap-x-40 "
+			className="flex flex-col items-center pt-24 px-10 pb-24 sm:pb-0 md:flex-row md:items-center md:justify-center md:px-12 md:pt-[16rem] md:pb-[16rem] md:gap-x-40 "
 		>
 			{/* Contains the image */}
 			<div className="rounded-4xl max-w-[30rem] md:w-96 bg-gradient-to-tr from-yellow-300 to-gray-700 border border-red-300/10">
@@ -130,7 +109,7 @@ const Hero = () => {
 					<img
 						src={peep}
 						alt="ImageOne"
-						className="h-80 w-full object-contain "
+						className="h-56 sm:h-80 w-full object-contain "
 					/>
 				</div>
 			</div>
@@ -171,11 +150,8 @@ const Hero = () => {
 				<p className="text-xs sm:text-sm md:text-lg text-gray-400 capitalize">
 					Passionately Curious Software Engineer
 				</p>
-				<div className="flex items-center justify-center gap-x-4 pt-5">
-					{/* TODO: Add download link
-					 */}
-
-					<Button className=" bg-yellow-300 hover:text-black animate-float ">
+				<div className="flex flex-col items-stretch gap-3 pt-5 sm:flex-row sm:items-center sm:justify-center sm:gap-x-4">
+					<Button className="h-11 bg-yellow-300 hover:text-black md:animate-float">
 						{' '}
 						Download CV
 					</Button>
@@ -187,8 +163,9 @@ const Hero = () => {
 						smooth={true}
 						offset={50}
 						duration={400}
+						className="inline-flex"
 					>
-						<Button className=" bg-yellow-300">Let's Talk</Button>
+						<Button className="h-11 w-full bg-yellow-300 sm:w-auto">Let's Talk</Button>
 					</Link>
 				</div>
 			</div>

@@ -36,7 +36,19 @@ function scrollProgressThrough(el: HTMLElement | null) {
 	return clamp(-rect.top / denom, 0, 1);
 }
 
+// On mobile the sentence reveals by phrase instead of per word so each pixel
+// of scroll moves something and nothing reads as lag.
+const PHRASES: WordToken[] = [
+	{ text: "I'm a selectively skilled", accent: false },
+	{ text: 'software engineer', accent: true },
+	{
+		text: 'with strong focus on producing high quality & impactful software solutions.',
+		accent: false,
+	},
+];
+
 const CORAL = 'var(--accent)';
+const FINISH_AT = 0.85; // reveal completes as the pin releases
 
 export default function AboutScrollReveal() {
 	const trackRef = useRef<HTMLDivElement>(null);
@@ -45,13 +57,37 @@ export default function AboutScrollReveal() {
 	const [progress, setProgress] = useState(0);
 	const [reducedMotion, setReducedMotion] = useState(false);
 	const [isHoveringText, setIsHoveringText] = useState(false);
+	const [mobile, setMobile] = useState<boolean>(
+		typeof window !== 'undefined' && window.innerWidth < 768,
+	);
+
 	const words = useRef(tokenize(ABOUT_INTRO_FULL, ABOUT_INTRO_ACCENT)).current;
+	const items = mobile ? PHRASES : words;
+	const n = items.length;
+	// Stagger items across 0 → FINISH_AT so the last one lands at 85%. Mobile
+	// reveals by phrase (3 items) so each pixel of scroll moves something.
+	const spread = mobile ? n / FINISH_AT : n + 4;
+	const fadeWindow = mobile ? 1 : 2.2;
+
+	const spotlightSize = isHoveringText ? 'clamp(180px, 24vw, 320px)' : '0px';
+	const spotlightStyle = {
+		backgroundColor: CORAL,
+	};
+	const overlayStyle = {
+		clipPath: `circle(${spotlightSize} at var(--spot-x, 100%) var(--spot-y, 40%))`,
+		WebkitClipPath: `circle(${spotlightSize} at var(--spot-x, 100%) var(--spot-y, 40%))`,
+	};
 
 	useEffect(() => {
 		const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
 		setReducedMotion(mq.matches);
 		const onMq = () => setReducedMotion(mq.matches);
 		mq.addEventListener('change', onMq);
+
+		const resizeMq = window.matchMedia('(max-width: 767px)');
+		setMobile(resizeMq.matches);
+		const onResizeMq = () => setMobile(resizeMq.matches);
+		resizeMq.addEventListener('change', onResizeMq);
 
 		const tick = () => {
 			setProgress(scrollProgressThrough(trackRef.current));
@@ -67,29 +103,19 @@ export default function AboutScrollReveal() {
 
 		return () => {
 			mq.removeEventListener('change', onMq);
+			resizeMq.removeEventListener('change', onResizeMq);
 			window.removeEventListener('scroll', onScroll);
 			window.removeEventListener('resize', onScroll);
 			if (rafRef.current) cancelAnimationFrame(rafRef.current);
 		};
 	}, []);
 
-	const n = words.length;
-	const spread = n + 4;
-	const spotlightSize = isHoveringText ? 'clamp(180px, 24vw, 320px)' : '0px';
-	const spotlightStyle = {
-		backgroundColor: CORAL,
-	};
-	const overlayStyle = {
-		clipPath: `circle(${spotlightSize} at var(--spot-x, 100%) var(--spot-y, 40%))`,
-		WebkitClipPath: `circle(${spotlightSize} at var(--spot-x, 100%) var(--spot-y, 40%))`,
-	};
-
 	return (
 		<div
 			ref={trackRef}
-			className="about-scroll-track relative min-h-[200vh] w-full"
+			className="about-scroll-track relative min-h-[120vh] md:min-h-[200vh] w-full"
 		>
-			<div className="about-scroll-sticky sticky top-0 flex min-h-[min(85vh,820px)] flex-col justify-center px-0 pb-16 pt-8 md:pb-24 md:pt-12">
+			<div className="about-scroll-sticky sticky top-0 flex min-h-[min(85svh,820px)] flex-col justify-center px-0 pb-16 pt-8 md:pb-24 md:pt-12">
 				<h2 className="w-full text-center text-4xl font-bold uppercase tracking-wider sm:text-5xl">
 					<span className="contact-headline-shimmer">About me</span>
 				</h2>
@@ -116,24 +142,24 @@ export default function AboutScrollReveal() {
 						aria-hidden
 					/>
 					<p className="about-scroll-lead relative z-20 text-center text-[clamp(1.65rem,4.5vw,3.35rem)] font-bold leading-[1.12] tracking-tight text-fg">
-						{words.map((w, i) => {
+						{items.map((item, i) => {
 							const t = reducedMotion
 								? 1
-								: clamp((progress * spread - i) / 2.2, 0, 1);
+								: clamp((progress * spread - i) / fadeWindow, 0, 1);
 							const opacity = reducedMotion ? 1 : 0.08 + 0.92 * t;
 							return (
 								<span
-									key={`${i}-${w.text}`}
-									className={w.accent ? 'about-scroll-accent' : undefined}
+									key={`${i}-${item.text}`}
+									className={item.accent ? 'about-scroll-accent' : undefined}
 									style={{
 										opacity,
-										color: w.accent ? CORAL : undefined,
+										color: item.accent ? CORAL : undefined,
 										transition: reducedMotion
 											? undefined
 											: 'opacity 0.12s ease-out',
 									}}
 								>
-									{w.text}
+									{item.text}
 									{i < n - 1 ? ' ' : ''}
 								</span>
 							);
@@ -144,12 +170,12 @@ export default function AboutScrollReveal() {
 						style={overlayStyle}
 						aria-hidden
 					>
-						{words.map((w, i) => {
+						{items.map((item, i) => {
 							return (
 								<span
-									key={`overlay-${i}-${w.text}`}
+									key={`overlay-${i}-${item.text}`}
 									className={
-										w.accent
+										item.accent
 											? 'about-scroll-accent about-scroll-accent--overlay'
 											: undefined
 									}
@@ -158,7 +184,7 @@ export default function AboutScrollReveal() {
 										color: '#111111',
 									}}
 								>
-									{w.text}
+									{item.text}
 									{i < n - 1 ? ' ' : ''}
 								</span>
 							);

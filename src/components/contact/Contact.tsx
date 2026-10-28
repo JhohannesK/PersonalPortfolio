@@ -1,5 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import { appContext } from '../../util/Context';
+import { useEffect, useRef, useState } from 'react';
 import { FaCalendarAlt, FaGithub, FaTwitter } from 'react-icons/fa';
 import { SiGmail } from 'react-icons/si';
 import GhanaTimeZone from './GhanaTimeZone';
@@ -38,7 +37,6 @@ const links = [
 const Contact = () => {
 	const contactRef = useRef<HTMLDivElement>(null);
 	const [revealed, setRevealed] = useState(false);
-	const { setContactState } = useContext(appContext);
 
 	useEffect(() => {
 		const reduce =
@@ -48,7 +46,6 @@ const Contact = () => {
 
 		const observer = new IntersectionObserver(
 			([entry]) => {
-				setContactState(entry.isIntersecting);
 				if (entry.isIntersecting) setRevealed(true);
 			},
 			{ threshold: 0.22, rootMargin: '0px 0px -10% 0px' }

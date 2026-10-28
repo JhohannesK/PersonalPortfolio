@@ -199,6 +199,7 @@ body {
 .app-shell {
 	background-color: var(--bg);
 	color: var(--fg);
+	padding-bottom: calc(56px + env(safe-area-inset-bottom) + 16px);
 }
 
 .app-shell-scrim {
